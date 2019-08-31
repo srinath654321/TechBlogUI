@@ -1,0 +1,7 @@
+.full-width{
+    width: 100%;
+}
+
+.mat-stroked-button:hover{
+    border: 2px solid blue;
+}

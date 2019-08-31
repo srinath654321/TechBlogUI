@@ -1,0 +1,24 @@
+.img-lg{
+    width: 92px;
+    height: 92px;
+}
+
+.rounded{
+    border-radius: 0.25rem !important;
+}
+
+.edit:hover{
+    border-radius: 3px;
+    background-color: silver;
+    cursor: pointer;
+
+}
+
+.card-title{
+    border-bottom: 2px solid blue;
+    padding-bottom: 20px;
+    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 1.65rem;
+}
+
