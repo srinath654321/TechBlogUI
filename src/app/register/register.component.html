@@ -1,0 +1,77 @@
+<div  class="container">
+    <div  class="card mb-5" >
+        <div  class="card-header text-center text-success">
+            REGISTRATION
+        </div>
+        <div class="card-body">
+            <form [formGroup] = "registerForm">
+                <div class="row">
+                    <div class ="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input matInput formControlName= "fullName" placeholder="FullName">
+                            <mat-error *ngIf = "registerForm.get('fullName').invalid">
+                                Please Enter Full Name
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input matInput formControlName= "email" placeholder="Email">
+                            <mat-error *ngIf = "registerForm.get('email').invalid && registerForm.get('email').touched">
+                                Please enter valid email
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <mat-select formControlName= "role" placeholder = "Role">
+                                <mat-option value="Developer">DEVELOPER</mat-option>
+                                <mat-option value = "Desingner">DESIGNER</mat-option>
+                                <mat-option value = "Engineer">ENGINEER</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf = "registerForm.get('role').invalid">
+                                    Please select a role
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input matInput formControlName= "phone" placeholder="Phone">
+                        </mat-form-field>
+                        <mat-error *ngIf = "registerForm.get('phone').invalid && registerForm.get('phone').touched">
+                                Please enter valid phone number
+                        </mat-error>
+                    </div>
+                </div>
+                <div class="row ml-auto">
+                    <mat-form-field class="full-width">
+                        <input matInput formControlName= "address" placeholder="Address">
+                        <mat-error *ngIf = "registerForm.get('address').invalid && registerForm.get('address').touched">
+                                Please enter valid address
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row ml-1 mt-3">
+                    <button (click) = "onRegister()"mat-stroked-button [disabled] = "registerForm.invalid">
+                        REGISTER
+                    </button>
+                    <button (click) = "onLogin()" mat-stroked-button style="margin-left: 10px">
+                            LOGIN
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #registrationResponse>
+    <mat-dialog-content class="text-success">
+        REGISTRATION SUCCESSFUL
+    </mat-dialog-content>
+    <mat-dialog-actions>
+            <button (click) = "onClose()" mat-stroked-button>Close</button>
+    </mat-dialog-actions>
+
+</ng-template>

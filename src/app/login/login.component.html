@@ -1,0 +1,32 @@
+<div class="login">
+    <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Login</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form #loginForm = "ngForm">
+                    <i class="material-icons">person</i>
+                    <mat-form-field class="full-width-input">
+                        <input matInput placeholder="Username" [(ngModel)]="userName" name="userName">
+                    </mat-form-field>
+                    <i class="material-icons">lock</i>                    
+                    <mat-form-field class="full-width-input">
+                        <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password">
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+            <button class="btn btn-success" (click)="onLogin()" color="primary">
+                    <span *ngIf = !loading>Login</span>
+                    <span *ngIf = "loading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> LOGGING</span>
+            </button>
+            <button class="btn btn-success" (click) = onRegister() style="margin-left: 10px;">
+                Register
+            </button>
+
+            <div class="row" style="padding-top: 15px">
+                <div class="col-12">
+                    <p *ngIf="isInvalidUser" class="bg-danger">Authentication failed: Invalid username/password</p>
+                </div>
+            </div>
+    </mat-card>
+</div>

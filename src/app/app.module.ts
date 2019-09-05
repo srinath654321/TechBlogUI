@@ -5,10 +5,15 @@ import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
-import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatListModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatTooltipModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatListModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatTooltipModule, MatIconModule, MatToolbarModule, MatSidenavModule } from '@angular/material';
+import { LoginComponent } from './login/login.component';
+import { JavaComponent } from './java/java.component';
+import { SqlComponent } from './sql/sql.component';
+import { RegisterComponent } from './register/register.component';
+import { JavaInterviewQuestionsComponent } from './java-interview-questions/java-interview-questions.component';
 
 @NgModule({
   declarations: [
@@ -16,9 +21,14 @@ import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule,
     NavbarComponent,
     UserProfileComponent,
     UserProfileEditComponent,
+    LoginComponent,
+    JavaComponent,
+    SqlComponent,
+    RegisterComponent,
+    JavaInterviewQuestionsComponent,
     
   ],
-  entryComponents: [UserProfileEditComponent],
+  entryComponents: [UserProfileEditComponent, RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,7 +39,13 @@ import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule,
+    FormsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

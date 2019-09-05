@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent implements OnInit, OnDestroy {
+export class UserProfileComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private matDialog: MatDialog) { }
 
@@ -57,13 +57,5 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     })
   }
 
-  openAboutEditDialog(){
-    
-  }
-
-  ngOnDestroy(){
-    console.log("Destroying subscription");
-    this.sub.unsubscribe();
-  }
 
 }

@@ -1,2 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.mat-stroked-button:hover{
+    background: #008000 !important;
+    color: white;
+}
+
+.page-header{
+    background-color: #673ab7;
+    color: white;
+    font-weight: 300;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card:hover{
+    border-left: 4px solid green;
+    cursor: pointer;
+}
+
+body{
+    font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+

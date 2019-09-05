@@ -44,6 +44,10 @@ export class UserProfileEditComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  onClose(){
+    this.dialogRef.close();
+  }
+
   get fullName(){
     return this.profileForm.get('fullName');
   }
