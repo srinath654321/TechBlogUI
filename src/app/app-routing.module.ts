@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SqlComponent } from './sql/sql.component';
 import { RegisterComponent } from './register/register.component';
+import { ShareJavaInterviewQuestionComponent } from './share-java-interview-question/share-java-interview-question.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'java/javaInterviewQuestions',
     component: JavaInterviewQuestionsComponent
+  },
+  {
+    path : 'java/shareJavaInterviewQuestion',
+    component: ShareJavaInterviewQuestionComponent
   },
   {
     path: 'sql',

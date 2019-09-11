@@ -14,6 +14,8 @@ import { JavaComponent } from './java/java.component';
 import { SqlComponent } from './sql/sql.component';
 import { RegisterComponent } from './register/register.component';
 import { JavaInterviewQuestionsComponent } from './java-interview-questions/java-interview-questions.component';
+import { ShareJavaInterviewQuestionComponent } from './share-java-interview-question/share-java-interview-question.component';
+import { LoginAlertComponent } from './login-alert/login-alert.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,11 @@ import { JavaInterviewQuestionsComponent } from './java-interview-questions/java
     SqlComponent,
     RegisterComponent,
     JavaInterviewQuestionsComponent,
+    ShareJavaInterviewQuestionComponent,
+    LoginAlertComponent,
     
   ],
-  entryComponents: [UserProfileEditComponent, RegisterComponent],
+  entryComponents: [UserProfileEditComponent, RegisterComponent, LoginAlertComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,12 +1,78 @@
-<div class="container"> 
-    <div class="card">
-        <div class="card-body">
-            <div class="card-title">
-                <strong>What is the differnece between method overloading and method overriding?</strong>
-            </div>
-            <div class="card-text">
-                Method overloading is resolved at Java compile time but method overriding is resolved at java runtime.
-            </div>
+<h1 class="page-header">TOP 50 JAVA INTERVIEW QUESTIONS</h1>
+<div class="card mat-elevation-z4">
+    <div class="card-body">
+        <div class="card-title">
+            <strong>What is the differnece between this() and super() in Java?</strong>
+        </div>
+        <div class="card-text">
+            this() is used to access one constructor from another with in the same class while super() is used to access super class
+            constructor. Either this() or super() exists it must be the first statement from the constructor.
+        </div>
+    </div>
+</div>
+<div class="card mat-elevation-z4">
+    <div class="card-body">
+        <div class="card-title">
+            <strong>What is Super keyword in Java?</strong>
+        </div>
+        <div class="card-text">
+           Super is used to access superclass varaibles, methods, constructors.
+           <br>
+           Super can be used in two forms
+           <ul>
+               <li>First form is for calling super class constructor</li>
+               <li>Second one is to call super class variables, methods</li>
+           </ul>
+        </div>
+    </div>
+</div>
+<div class="card mat-elevation-z4">
+    <div class="card-body">
+        <div class="card-title">
+            <strong>What is the difference between abstract class and interface?</strong>
+        </div>
+        <div class="card-text">
+            <table class="table">
+                <thead>
+                    <th>Interface</th>
+                    <th>Abstract class</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Interface contains only abstract methods</td>
+                        <td>Abstract class can contain abstract methods, concrete methods or both</td>
+                    </tr>
+                    <tr>
+                        <td>Method access specifiers must be public in interface</td>
+                        <td>Except private we can have any access specifier for methods</td>
+                    </tr>
+                    <tr>
+                        <td>Multiple inheritance can be achieved</td>
+                        <td>Multiple inheritance cannot be achieved</td>
+                    </tr>
+                    <tr>
+                        <td>Varibles declared must be public, static, final</td>
+                        <td>Except private varibles can have any access specifiers</td>
+                    </tr>
+                    <tr>
+                        <td>Interface can be implemented using implements keyword</td>
+                        <td>Abstract class can be implemented using Abstract keyword</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="card mat-elevation-z4">
+    <div class="card-body">
+        <div class="card-title">
+            <strong>Can we have multiple classes in a single file?</strong>
+        </div>
+        <div class="card-text">
+            Yes we can have multiple classes in a single file but it is not recommended practice in Java. We can have multiple classes in a single file but only
+            one class can be made public. If we try to make two public classes in a single file Java throws following compilation error.
+            <br>
+            
         </div>
     </div>
 </div>

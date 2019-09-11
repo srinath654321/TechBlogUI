@@ -1,3 +1,17 @@
 .full-width{
     width: 100%;
 }
+
+.card-header{
+    border: 0;
+    border-bottom: 2px solid #673ab7;
+    color: #673ab7;
+    font-weight: 400;
+}
+
+ .cross-button{
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 5px;
+}
+

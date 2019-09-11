@@ -2,8 +2,15 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 .mat-stroked-button:hover{
-    background: #008000 !important;
+    background: #673ab7 !important;
     color: white;
+    font-weight: 400;
+}
+
+.mat-stroked-button{
+    color: #008000;
+    font-weight: 400;
+    background: transparent;
 }
 
 .page-header{
@@ -13,14 +20,36 @@
     padding: 15px;
     margin-bottom: 20px;
     text-align: center;
+    margin-top: 20px;
 }
 
-.card:hover{
-    border-left: 4px solid green;
-    cursor: pointer;
-}
+html, body{
+    height: 100%;
+    margin: 0;
+} 
 
 body{
     font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
 
+.form-width{
+    width: 100%;
+}
+
+.header-color{
+    color: #673ab7;
+}
+
+.site-color{
+    color: #673ab7;
+}
+
+textarea.cdk-textarea-autosize-measuring {
+    padding: 4px 0 !important;
+}
+
+.cross-button:hover{
+    border-radius: 3px;
+    background-color: #673ab7;
+    cursor: pointer;
+}

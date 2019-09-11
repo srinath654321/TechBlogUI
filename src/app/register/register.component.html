@@ -1,6 +1,6 @@
-<div  class="container">
+<div  class="container" style="padding-top: 30px;">
     <div  class="card mb-5" >
-        <div  class="card-header text-center text-success">
+        <div  class="card-header text-center">
             REGISTRATION
         </div>
         <div class="card-body">
@@ -23,7 +23,24 @@
                         </mat-form-field>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row pt-4">
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                                <input matInput #input formControlName = "password" placeholder="Password" type="password">
+                                <mat-error *ngIf = "registerForm.get('password').hasError('required')">Password is required</mat-error>
+                                <mat-error *ngIf = "registerForm.get('password').hasError('minlength')">Password should be of 8 characters length</mat-error>
+                                <mat-hint align ="left">Passowrd must be one lowercase and one uppercase letter, one digit</mat-hint>
+                                <mat-hint align = "end">{{input.value?.length || 0}}/8</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input matInput formControlName= "confirmPassword" placeholder="confirm password" type="password">
+                            <mat-error *ngIf = "registerForm.get('confirmPassword').errors"> Passwords do not match</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row pt-4">
                     <div class="col-md-6">
                         <mat-form-field class="full-width">
                             <mat-select formControlName= "role" placeholder = "Role">
@@ -39,13 +56,13 @@
                     <div class="col-md-6">
                         <mat-form-field class="full-width">
                             <input matInput formControlName= "phone" placeholder="Phone">
+                            <mat-error *ngIf = "registerForm.get('phone').invalid && registerForm.get('phone').touched">
+                                    Please enter valid phone number
+                            </mat-error>
                         </mat-form-field>
-                        <mat-error *ngIf = "registerForm.get('phone').invalid && registerForm.get('phone').touched">
-                                Please enter valid phone number
-                        </mat-error>
                     </div>
                 </div>
-                <div class="row ml-auto">
+                <div class="row ml-auto mr-1">
                     <mat-form-field class="full-width">
                         <input matInput formControlName= "address" placeholder="Address">
                         <mat-error *ngIf = "registerForm.get('address').invalid && registerForm.get('address').touched">
@@ -67,11 +84,16 @@
 </div>
 
 <ng-template #registrationResponse>
+    <div class="row">
+        <i (click) = "onClose()" class="material-icons cross-button">close</i>
+    </div>
     <mat-dialog-content class="text-success">
-        REGISTRATION SUCCESSFUL
+        REGISTRATION SUCCESSFUL AND LOGIN USE YOUR LOGIN DETAILS
     </mat-dialog-content>
     <mat-dialog-actions>
-            <button (click) = "onClose()" mat-stroked-button>Close</button>
+        <div class="row ml-auto mr-1 mt-1">
+            <button (click) = "onClose()" mat-stroked-button>CLOSE</button>
+        </div>
     </mat-dialog-actions>
 
 </ng-template>

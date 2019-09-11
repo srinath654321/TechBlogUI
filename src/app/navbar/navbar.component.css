@@ -1,7 +1,6 @@
 mat-sidenav {
-    width: 280px;
-    padding:15px;
-    height: 100%;
+    width: 320px;
+    background-color: #673ab7;
 }
 
 .example-container {
@@ -12,4 +11,40 @@ mat-sidenav {
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
   }
+
+.mat-list-item{
+    color: white;
+    font-weight: 300;
+}
+
+/* .mat-list-item:hover{
+    background-color: #673ab7;
+} */
+
+.mat-subheader {
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.list-item{
+    margin: 0 15px 0 15px;
+}
+
+.cross-button{
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 5px;
+}
+
+
+
+
+
+  

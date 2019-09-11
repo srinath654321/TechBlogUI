@@ -1,14 +1,8 @@
 <div class="card mb-3" style="border:0; border-bottom:1px solid white;">
-    <div class="row">
-        <div class="col-md-9">
-            <h2 mat-dialog-title>Edit User Profile</h2>
-        </div>
-        <div class="ml-auto mr-1 cross-button">
-            <i (click)= "onClose()" class="material-icons">close</i>
-        </div>
-    </div>
+    <i (click)= "onClose()" class="material-icons ml-auto mr-2 cross-button">close</i>
+    <h2 class = "title" mat-dialog-title><strong>EDIT USER PROFILE</strong></h2>
 </div>
-<div mat-dialog-content>
+<div mat-dialog-content >
     <form [formGroup] = "profileForm">
         <div class="row">
             <div class ="col-md-6">

@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
+import { Router, Routes } from '@angular/router';
+import { MatSidenav } from '@angular/material';
+
+interface ROUTE{
+  icon?: string;
+  route?: string;
+  title?: string
+}
 
 @Component({
   selector: 'app-navbar',
@@ -9,17 +17,51 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
 
-  constructor(private router: Router) { }
+@ViewChild('logOutAlert' , {static: false} )public logOutAlert: TemplateRef<any>;
+private matDialgRef : MatDialogRef<any>;
+
+techBlogRoutes : ROUTE[] = [
+    {
+      route: 'java',
+      title: 'JAVA'
+    },
+    {
+      route: 'sql',
+      title: 'SQL'
+    }
+  ]
+
+ techTools :string[] = ["SPRING", "HIBERNATE", "JACKSON", "DROPWIZARD", "MYSQL", "GUAVA", "GUICE", "GIT", ]  
+
+  constructor(private router: Router, private matDialog: MatDialog) { }
 
   ngOnInit() {
   }
 
   onLogOut(){
+    this.matDialgRef = this.matDialog.open(this.logOutAlert, {
+      width : '450px',
+      height: '200px'
+    })
+    // sessionStorage.clear();
+    // this.router.navigate(['login']);
+  }
+
+  onLogOutAlertCancel(){
+    this.matDialgRef.close();
+  }
+
+  onCrossClick(){
+    this.matDialgRef.close();
+  }
+
+  onLogOutAlretOK(){
     sessionStorage.clear();
+    this.matDialgRef.close();
     this.router.navigate(['login']);
   }
 
-  isUserLoggedIn() : boolean{
+  isUserLoggedIn() : boolean {
     return sessionStorage.userLoggedIn;
   }
 

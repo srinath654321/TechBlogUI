@@ -1,26 +1,71 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <button mat-icon-button>
-      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-    </button>
-    <h1>JavaLearner</h1>
-  </mat-toolbar-row>
-</mat-toolbar>
+<div class="example-container">
+    <mat-toolbar color="primary" class="example-toolbar">
+        <mat-toolbar-row>
+          <button mat-icon-button>
+            <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+          </button>
+          <h1>TECHBLOG</h1>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-sidenav-container class="example-sidenav-container">
+      <mat-sidenav #sidenav mode="over" role="navigation">
+        <!-- <i (click)= "sidenav.close()" class="material-icons cross-button pl-auto">close</i> -->
+        <mat-nav-list>
+    
+          <h2 matSubheader>Tech Blog</h2>
+    
+          <a mat-list-item class = "list-item" routerLink= "/" style="height: 0;"></a>
+    
+          <a *ngFor = "let techBlogRoute of techBlogRoutes"
+          mat-list-item
+          (click) = "sidenav.close()"
+          [routerLink] = "[techBlogRoute.route]"
+          routerLinkActive = "list-item-active" >
+          <i class="fab fa-java list-item"></i>
+          {{techBlogRoute.title}}</a>
+    
+          <mat-divider></mat-divider>
+    
+          <h2 matSubheader>TOOLS</h2>
+    
+          <a *ngFor =  "let techTool of techTools" 
+            mat-list-item
+            (click) = "sidenav.close()"  routerLink = "/" routerLinkActive= "list-item-active" class="list-item">
+            {{techTool}}
+          </a>
+    
+          <mat-divider></mat-divider>
+    
+          <h2 matSubheader>USER</h2>
+          <a mat-list-item (click) = "sidenav.close()" routerLink="profile" routerLinkActive="list-item-active">
+            <mat-icon matListIcon class = "list-item" >perm_identity</mat-icon>
+            Profile </a>
+          <div *ngIf = "isUserLoggedIn()">
+              <a mat-list-item (click) = "[sidenav.close(), onLogOut()]">
+                <mat-icon matListIcon class="list-item">logout</mat-icon> 
+                LogOut </a>
+          </div>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class ="container">
+            <router-outlet></router-outlet>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
 
-<mat-sidenav-container class="example-sidenav-container">
-  <mat-sidenav #sidenav mode="over" role ="navigation">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/java" routerLinkActive="active">Java </a>
-      <a mat-list-item routerLink="/sql" routerLinkActive="active"> Sql </a>
-      <a mat-list-item routerLink="/profile" routerLinkActive="active"> Profile </a>
-      <div *ngIf = "isUserLoggedIn()">
-          <a mat-list-item routerLink="/logOut" (click) = "onLogOut()" routerLinkActive="active"> LogOut </a>
-      </div>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div style="height: 88vh;padding: 20px;">
-      <router-outlet></router-outlet>
+<ng-template #logOutAlert>
+    <div class="row">
+        <i (click) = "onCrossClick()" class="material-icons cross-button">close</i>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <mat-dialog-content class="text-warning">
+       <h5>ARE YOU SURE YOU WANT TO LOGOUT ?</h5>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <div class="row ml-auto mr-1 pt-3">
+            <button (click) = "onLogOutAlretOK()" mat-stroked-button>OK</button>
+            <button (click) = "onLogOutAlertCancel()" mat-stroked-button class="ml-3">CANCEL</button>
+        </div>
+    </mat-dialog-actions>
+</ng-template>

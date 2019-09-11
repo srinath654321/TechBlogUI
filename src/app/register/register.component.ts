@@ -1,7 +1,29 @@
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { Component, OnInit, TemplateRef, ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { ErrorStateMatcher } from '@angular/material';
+
+// custom validator to check that two fields match
+export function MustMatch(controlName: string, matchingControlName: string) {
+  return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+          // return if another validator has already found an error on the matchingControl
+          return;
+      }
+
+      // set error on matchingControl if validation fails
+      if (control.value !== matchingControl.value) {
+          matchingControl.setErrors({ mustMatch: true });
+      } else {
+          matchingControl.setErrors(null);
+      }
+  }
+}
+
 
 @Component({
   selector: 'app-register',
@@ -16,12 +38,15 @@ export class RegisterComponent implements OnInit {
   role: string;
   address: string;
   phone: number;
+  password: string;
+  confirmPassword: string;
 
   @ViewChild('registrationResponse', {static: false})registrationResponse: TemplateRef<any>;
 
   constructor(private fb: FormBuilder, private router: Router, private matDialog: MatDialog) { }
 
   private matDialogRef: MatDialogRef<any>
+
 
   ngOnInit() {
 
@@ -33,6 +58,13 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.email
       ]],
+      password: [
+        this.password, [
+          Validators.required,
+          Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)
+        ]
+      ],
+      confirmPassword: [this.confirmPassword ],
       role: [this.role,[
         Validators.required
       ]],
@@ -43,8 +75,12 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(10)
       ]]
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
     });
   }
+
+
 
   onLogin(){
     this.router.navigate(['login']);
@@ -55,7 +91,7 @@ export class RegisterComponent implements OnInit {
     console.log("address", this.registerForm.get('address').value);
     this.matDialogRef = this.matDialog.open(this.registrationResponse, {
       width: '400px',
-      height: '100px'
+      height: '200px'
     });
   }
 
