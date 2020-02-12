@@ -1,0 +1,10 @@
+<div class="row pb-1">
+    <i (click) = "onCrossClick()" class="material-icons cross-button ml-auto mr-2">close</i>
+</div>
+<mat-dialog-content>
+    <p class="pr-5 pt-3 pb-3 text-secondary font-weight-bold">Are you sure do you want to delete {{deleteLable}} ?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end" class="pb-2">
+    <button mat-button matDialogClose="discard" color="primary">Discard</button>
+    <button mat-button matDialogClose="confirm" color="warn">Confirm</button>
+</mat-dialog-actions>

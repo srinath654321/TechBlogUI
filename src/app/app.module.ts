@@ -8,7 +8,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
-import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatListModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatTooltipModule, MatIconModule, MatToolbarModule, MatSidenavModule } from '@angular/material';
+import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatListModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatTooltipModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { JavaComponent } from './java/java.component';
 import { SqlComponent } from './sql/sql.component';
@@ -16,6 +16,13 @@ import { RegisterComponent } from './register/register.component';
 import { JavaInterviewQuestionsComponent } from './java-interview-questions/java-interview-questions.component';
 import { ShareJavaInterviewQuestionComponent } from './share-java-interview-question/share-java-interview-question.component';
 import { LoginAlertComponent } from './login-alert/login-alert.component';
+import { UserPorfileEditDialogComponent } from './user-porfile-edit-dialog/user-porfile-edit-dialog.component';
+import { SkillsAddDialogComponent } from './skills-add-dialog/skills-add-dialog.component';
+import { CertificationsAddComponent } from './certifications-add/certifications-add.component';
+import { WorkExpAddDialogComponent } from './work-exp-add-dialog/work-exp-add-dialog.component';
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { EducationDetailsComponent } from './education-details/education-details.component';
+import { EducationDialogComponent } from './education-dialog/education-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,9 +37,16 @@ import { LoginAlertComponent } from './login-alert/login-alert.component';
     JavaInterviewQuestionsComponent,
     ShareJavaInterviewQuestionComponent,
     LoginAlertComponent,
+    UserPorfileEditDialogComponent,
+    SkillsAddDialogComponent,
+    CertificationsAddComponent,
+    WorkExpAddDialogComponent,
+    AlertDialogComponent,
+    EducationDetailsComponent,
+    EducationDialogComponent,
     
   ],
-  entryComponents: [UserProfileEditComponent, RegisterComponent, LoginAlertComponent, NavbarComponent],
+  entryComponents: [AlertDialogComponent, EducationDialogComponent, UserProfileEditComponent,WorkExpAddDialogComponent,SkillsAddDialogComponent, CertificationsAddComponent, UserPorfileEditDialogComponent, RegisterComponent, LoginAlertComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -49,9 +63,12 @@ import { LoginAlertComponent } from './login-alert/login-alert.component';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [MatNativeDateModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

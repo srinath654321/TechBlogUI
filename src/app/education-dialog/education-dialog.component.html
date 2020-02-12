@@ -1,0 +1,62 @@
+<div class="card mb-3" style="border:0; border-bottom:1px solid white;">
+        <i (click)= "onClose()" class="material-icons ml-auto mr-2 cross-button">close</i>
+        <h2 mat-dialog-title><strong>ADD EDUCATION</strong></h2>
+        <mat-divider class="title mb-3"></mat-divider>
+    </div>
+    
+<div mat-dialog-content >
+    <form [formGroup] = "eduForm">
+        <div class="row ml-1 mr-1 pb-1">
+            <mat-form-field class="full-width">
+                <mat-label>SchoolName</mat-label>
+                <input matInput formControlName = "schoolName">
+            </mat-form-field>
+        </div>
+        <div class="row pb-1">
+            <div class="col-md-6">
+                <mat-form-field class="full-width">
+                        <mat-label>YearStarted</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName = "yearStarted">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div *ngIf = "!eduForm.controls.checked.value" class="col-md-6">
+                    <mat-form-field class="full-width">
+                            <mat-label>YearEnded</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName = "yearEnded">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+            </div>
+        </div>
+        <div class="row ml-1 mr-1 pb-1">
+            <mat-checkbox  formControlName = "checked">Still Studying ? </mat-checkbox>
+        </div>
+        <div class="row pb-1">
+            <div class="col-6">
+                <mat-form-field class="full-width">
+                    <mat-label>TypeOfDegree</mat-label>
+                    <input matInput formControlName = "typeOfDegree">
+                </mat-form-field>
+            </div>
+            <div class="col-6">
+                <mat-form-field class="full-width">
+                        <mat-label>Course</mat-label>
+                        <input matInput formControlName = "courseName">
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+    
+    
+<div class="mt-3">
+    <mat-divider class ="title mb-3"></mat-divider>
+    <div mat-dialog-actions>
+        <button mat-stroked-button color ="warn" class="mr-3" (click) = "onNoClick()">CANCEL</button>
+        <button mat-stroked-button  color = "primary" [disabled] = "eduForm.invalid" [mat-dialog-close] = "eduForm">SAVE</button>
+    </div>
+</div>
+
+

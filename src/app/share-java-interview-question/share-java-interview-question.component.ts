@@ -1,5 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-share-java-interview-question',
@@ -13,7 +14,7 @@ export class ShareJavaInterviewQuestionComponent implements OnInit {
   question: string;
   answer: string;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.shareJavaQuestion = this.fb.group({
@@ -25,6 +26,10 @@ export class ShareJavaInterviewQuestionComponent implements OnInit {
       ]]
 
       })
+  }
+
+  onBack(){
+    this.router.navigate(['java']);
   }
 
   onClick(){

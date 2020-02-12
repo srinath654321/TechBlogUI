@@ -1,3 +1,4 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { JavaInterviewQuestionsComponent } from './java-interview-questions/java-interview-questions.component';
 import { JavaComponent } from './java/java.component';
 import { LoginComponent } from './login/login.component';
@@ -8,6 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SqlComponent } from './sql/sql.component';
 import { RegisterComponent } from './register/register.component';
 import { ShareJavaInterviewQuestionComponent } from './share-java-interview-question/share-java-interview-question.component';
+import { CommonModule } from '@angular/common';
 
 
 const routes: Routes = [
@@ -16,10 +18,12 @@ const routes: Routes = [
     component: UserProfileComponent,
     canActivate: [AuthGuard]
   },
+
   {
     path: 'login',
     component: LoginComponent,
   },
+
   {
     path: 'register',
     component: RegisterComponent
@@ -48,7 +52,15 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    CommonModule,
+    RouterModule.forRoot(routes,
+      {
+        scrollPositionRestoration: 'enabled',
+        anchorScrolling: 'enabled',
+        onSameUrlNavigation: "reload",
+        scrollOffset: [0, 64],
+      }
+    )
   ],
   exports: [RouterModule]
 })

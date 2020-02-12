@@ -1,23 +1,27 @@
-<div class="container" style="padding-top: 100px;">
-    <div class="card stretch-card mb-4">
-        <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openAboutEditDialog()">edit</i>
-        <div class="d-flex flex-row card-title ml-3 mr-3">
-            <h4>About</h4>
-        </div>
-        <div class="card-body">
-            <p>
-              Experienced Application Developer with a demonstrated history of working in the information technology and services industry. 
-              Skilled in Java,Angular,Dropwizard,Spring,Hibernate,HTML,CSS,Bootstrap and Strong engineering professional graduated from University of Central Missouri. 
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class= "col-md-6 grid-margin stretch-card">
-            <div class="card">
+<div class = "row" style="padding-top: 50px;">
+    <div class="col-md-3 col-xl-2"></div>
+    <div class="col-md-9 col-xl-8">
+        <section id="about">
+            <div class="card stretch-card mb-4 mat-elevation-z8">
+                <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openAboutEditDialog()">edit</i>
+                <div class="d-flex flex-row card-title ml-3 mr-3">
+                    <h4>About</h4>
+                </div>
                 <div class="card-body">
-                    <div class="d-flex flex-row">
+                    <p>{{about}}</p>
+                </div>
+            </div>
+        </section>
+        <section id="contact">
+            <div class="card  stretch-card mat-elevation-z8 mb-4">
+                <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openContactEditDialog()">edit</i>
+                <div class="d-flex flex-row card-title ml-3 mr-3">
+                    <h4>Contact</h4>
+                </div>
+                <div class="card-body">
+                    <!-- <div class="d-flex flex-row">
                         <i class="material-icons cross-button ml-auto mr-2" (click) = "openProfileEditDialog()">edit</i>
-                    </div>
+                    </div> -->
                     <div class="d-flex flex-row">
                             <img src="assets/images/SRINATH.jpg" class="img-lg rounded">
                             <div class="ml-3">
@@ -39,8 +43,104 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="skill">
+            <div class="card stretch-card mb-4 mat-elevation-z8">
+                <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openSkillsAddDialog()">add</i>
+                <div class="d-flex flex-row card-title ml-3 mr-3">
+                    <h4>Skills</h4>
+                </div>
+                <div class="card-body">
+                    <div *ngFor = "let skillExp of skillExpArray">
+                            <div class="skillBack">
+                                <div class="row">
+                                    <div class="pl-5 col-5 text-secondary font-weight-bold">{{skillExp.skill}}</div>
+                                    <div class = "col-5 text-secondary font-weight-bold">
+                                        <div *ngIf = "skillExp.experience">{{skillExp.experience}}  Years</div>
+                                    </div>
+                                    <div class="col-2">
+                                        <!-- <p>hello srinath how are you doing today</p> -->
+                                        <i class="material-icons float-right mr-3 cross-button"  (click) = "removeSkill(skillExp)">delete_outline</i>
+                                        <i class="material-icons float-right mr-2 cross-button"  (click) = "openSkillsEditDialog(skillExp)">edit</i>
+                                    </div>
+                                </div>
+                            </div>
+                            <mat-divider class="pb-3"></mat-divider>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications">
+            <div class="card stretch-card mb-4 mat-elevation-z8">
+                <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openCertificationsAddDialog()">add</i>
+                <div class="d-flex flex-row card-title ml-3 mr-3">
+                    <h4>Certifications</h4>
+                </div>
+                <div class="card-body">
+                    <div *ngFor = "let certification of certificationsArray">
+                        <div class ="certify">
+                            <div class="row">
+                                <i class="material-icons ml-auto mr-2 cross-button"  (click) = "openCertificationsEditDialog(certification)">edit</i>
+                                <i class="material-icons mr-2 cross-button"  (click) = "removeCertification(certification)">delete_outline</i>
+                            </div>
+                            <div class="row text-secondary font-weight-bold">{{certification.name}}</div>
+                            <div class="row text-secondary font-weight-bold" *ngIf = "certification.yearIssued">Issued Year : {{certification.yearIssued}}</div>
+                            <div class="row text-secondary font-weight-bold" *ngIf = "certification.yearExpired">Expired Year : {{certification.yearExpired}}</div>
+                            <div class="row text-secondary font-weight-bold" *ngIf = "certification.link"><a href="{{certification.link}}">{{certification.link}}</a></div>
+                        </div>
+                        <mat-divider class="pb-3 pt-3"></mat-divider>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="workexp">
+            <div class="card stretch-card mb-4 mat-elevation-z8">
+                <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openWorkExpAddDialog()">add</i>
+                <div class="d-flex flex-row card-title ml-3 mr-3">
+                    <h4>WorkExperience</h4>
+                </div>
+                <div class="card-body">
+                        <div *ngFor = "let workExp of workExpArray">
+                            <div class="certify" *ngIf = "workExpArray.length > 0">
+                                <div class="row">
+                                    <i class="material-icons ml-auto mr-2 cross-button"  (click) = "openWorkExpEditDialog(workExp)">edit</i>
+                                    <i class="material-icons mr-2 cross-button"  (click) = "removeWorkExp(workExp)">delete_outline</i>
+                                </div>
+                                <div class="row text-secondary font-weight-bold">{{workExp.role}}</div>
+                                <div class="row text-secondary font-weight-bold">{{workExp.companyName}}</div>
+                                <div class="row text-secondary font-weight-bold" *ngIf = "workExp.yearStarted">{{workExp.yearStarted}} - {{workExp.yearEnded}}</div>
+                                <div class="row text-secondary font-weight-bold" *ngIf = "workExp.location">{{workExp.location}}</div>
+                                <div class="row text-secondary font-weight-bold pb-2 pt-2" *ngIf = "workExp.responsibilities">Responsibilities :</div>
+                                <ng-container *ngIf = "workExp.responsibilities">
+                                    <pre class="formatted text-secondary font-weight-bold">{{workExp.responsibilities}}</pre>
+                                </ng-container>
+                            </div>
+                            <mat-divider class="pb-3 pt-3"></mat-divider> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id= "education">
+            <education-details [educationArray] = "educationArray" (edu)= eduDetailChange($event)></education-details>
+        </section>
+        
+    </div>
+    <div class="col-xl-2">
+        <ul class="section-nav">
+            <li class="list-entry"><a [routerLink] = "['.']" fragment ="about">Summary</a></li>
+            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "contact">ContactInfo</a></li>
+            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "skill">Skills</a></li>
+            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "certifications">Certifications</a></li>
+            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "workexp">WorkExperience</a></li>
+            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "education">Education</a></li>
+        </ul>
     </div>
 </div>
+
+
 
 

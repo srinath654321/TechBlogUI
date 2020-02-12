@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+ @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; 
 
 .mat-stroked-button:hover{
     background: #673ab7 !important;
@@ -8,20 +8,32 @@
 }
 
 .mat-stroked-button{
-    color: #008000;
+    color: #673ab7;
     font-weight: 400;
     background: transparent;
 }
 
-.page-header{
-    background-color: #673ab7;
+.mat-raised-button{
     color: white;
-    font-weight: 300;
+    font-weight: 400;
+    background: transparent;
+}
+
+.mat-raised-button:hover{
+    background: #673ab7 !important;
+    color: white;
+    font-weight: 400;
+}
+
+.page-header{
+    background-color: darkgray;
+    color: white;
+    font-weight: bold;
     padding: 15px;
     margin-bottom: 20px;
     text-align: center;
     margin-top: 20px;
-}
+} 
 
 html, body{
     height: 100%;

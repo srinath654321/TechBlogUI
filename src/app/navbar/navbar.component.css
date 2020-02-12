@@ -1,6 +1,6 @@
 mat-sidenav {
-    width: 320px;
-    background-color: #673ab7;
+    width: 300px;
+    background-color: silver;
 }
 
 .example-container {
@@ -17,7 +17,7 @@ mat-sidenav {
     /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
        causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
     flex: 1;
-  }
+  } 
 
 .mat-list-item{
     color: white;

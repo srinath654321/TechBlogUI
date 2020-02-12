@@ -12,4 +12,14 @@ export class SqlComponent implements OnInit {
   ngOnInit() {
   }
 
+  isCollapsed : boolean = true;
+
+
+  name : String = "srinath kavur";
+
+
+  toggle(){
+    this.isCollapsed = !this.isCollapsed;
+  }
+
 }

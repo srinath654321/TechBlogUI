@@ -1,0 +1,15 @@
+.form-field__textarea {
+    max-height: initial;
+    padding: 6px 10px;
+    min-height: 150px;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.title{
+    border-bottom: 2px solid darkgray;
+    margin-left: 0;
+    margin-right: 0;
+}

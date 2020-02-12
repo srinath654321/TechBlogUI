@@ -1,0 +1,9 @@
+.full-width{
+    width: 100%;
+}
+
+.title{
+    border-bottom: 2px solid darkgray;
+    margin-left: 0;
+    margin-right: 0;
+}

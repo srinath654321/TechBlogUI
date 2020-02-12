@@ -2,6 +2,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { inject } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile-edit',
@@ -13,7 +14,7 @@ export class UserProfileEditComponent implements OnInit {
   profileForm : FormGroup;
 
   constructor(public dialogRef: MatDialogRef<UserProfileEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
 

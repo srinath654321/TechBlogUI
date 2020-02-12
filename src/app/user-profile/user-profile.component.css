@@ -16,3 +16,79 @@
     margin-bottom: 1.65rem;
 }
 
+.certify{
+  background: #eeeeee;
+  padding: 40px;
+}
+
+.skillBack{
+  background: #eeeeee;
+  padding: 20px;
+}
+
+
+.certify a:hover {
+  text-decoration: none;
+  color: blue;
+}
+
+
+.section-nav{
+    padding-left: 0;
+    border-left: 2px solid green;
+}
+
+.section-nav ul {
+  padding-left: 1rem;
+}
+
+.list-entry{
+    display: block;
+}
+
+.formatted {
+  white-space: pre-wrap;
+}
+
+.list-entry a{
+  display: block;
+  padding: 0.105rem 1rem;
+  color: darkgray;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+
+li{
+  text-decoration: none;
+  display: block;
+}
+
+
+.list-entry a:hover{
+    color: blue;
+}
+
+.title{
+    display: block;
+    pointer-events: auto;
+}
+
+
+/* section{
+  margin-bottom: 4rem;
+} */
+
+.section-header{
+  background-color: #76528BFF;
+  padding: 30px;
+  margin: 0;
+  color : #2BAE66FF;
+  text-align: center;
+  font-weight: bolder;
+}
+
+.section-content{
+  padding:30px;
+  background: #eeeeee;
+}
