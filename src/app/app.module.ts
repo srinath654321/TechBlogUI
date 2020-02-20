@@ -7,8 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
-import { MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule, MatExpansionModule, MatFormFieldModule, MatInputModule, MatListModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatSelectModule, MatSnackBarModule, MatTableModule, MatTabsModule, MatTooltipModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatIconModule } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { JavaComponent } from './java/java.component';
 import { SqlComponent } from './sql/sql.component';
@@ -16,20 +15,24 @@ import { RegisterComponent } from './register/register.component';
 import { JavaInterviewQuestionsComponent } from './java-interview-questions/java-interview-questions.component';
 import { ShareJavaInterviewQuestionComponent } from './share-java-interview-question/share-java-interview-question.component';
 import { LoginAlertComponent } from './login-alert/login-alert.component';
-import { UserPorfileEditDialogComponent } from './user-porfile-edit-dialog/user-porfile-edit-dialog.component';
-import { SkillsAddDialogComponent } from './skills-add-dialog/skills-add-dialog.component';
-import { CertificationsAddComponent } from './certifications-add/certifications-add.component';
 import { WorkExpAddDialogComponent } from './work-exp-add-dialog/work-exp-add-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { EducationDetailsComponent } from './education-details/education-details.component';
 import { EducationDialogComponent } from './education-dialog/education-dialog.component';
+import { TruncatePipe } from './truncate.pipe';
+import { WorkExperienceComponent } from './work-experience/work-experience.component';
+import { UserContactEditDialogComponent } from './user-contact-edit-dialog/user-contact-edit-dialog.component';
+import { UserAboutEditDialogComponent } from './user-about-edit-dialog/user-about-edit-dialog.component';
+import { CertificationComponent } from './certification/certification.component';
+import { CertificationDialogComponent } from './certification-dialog/certification-dialog.component';
+import { SkillComponent } from './skill/skill.component';
+import { SkillDialogComponent } from './skill-dialog/skill-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     UserProfileComponent,
-    UserProfileEditComponent,
     LoginComponent,
     JavaComponent,
     SqlComponent,
@@ -37,16 +40,23 @@ import { EducationDialogComponent } from './education-dialog/education-dialog.co
     JavaInterviewQuestionsComponent,
     ShareJavaInterviewQuestionComponent,
     LoginAlertComponent,
-    UserPorfileEditDialogComponent,
-    SkillsAddDialogComponent,
-    CertificationsAddComponent,
     WorkExpAddDialogComponent,
     AlertDialogComponent,
     EducationDetailsComponent,
     EducationDialogComponent,
-    
+    TruncatePipe,
+    WorkExperienceComponent,
+    UserContactEditDialogComponent,
+    UserAboutEditDialogComponent,
+    CertificationComponent,
+    CertificationDialogComponent,
+    SkillComponent,
+    SkillDialogComponent,
   ],
-  entryComponents: [AlertDialogComponent, EducationDialogComponent, UserProfileEditComponent,WorkExpAddDialogComponent,SkillsAddDialogComponent, CertificationsAddComponent, UserPorfileEditDialogComponent, RegisterComponent, LoginAlertComponent, NavbarComponent],
+  entryComponents: [AlertDialogComponent, EducationDialogComponent, UserContactEditDialogComponent, 
+    WorkExpAddDialogComponent,SkillDialogComponent, CertificationDialogComponent, 
+    UserAboutEditDialogComponent, RegisterComponent, LoginAlertComponent, NavbarComponent],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -66,9 +76,11 @@ import { EducationDialogComponent } from './education-dialog/education-dialog.co
     MatListModule,
     MatCheckboxModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    MatProgressSpinnerModule
   ],
-  providers: [MatNativeDateModule],
+  providers: [MatNativeDateModule, TruncatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

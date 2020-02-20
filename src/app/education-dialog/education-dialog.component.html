@@ -9,8 +9,15 @@
         <div class="row ml-1 mr-1 pb-1">
             <mat-form-field class="full-width">
                 <mat-label>SchoolName</mat-label>
-                <input matInput formControlName = "schoolName">
+                <input matInput (keyup)= "schoolNameKeyUp($event.target.value)" formControlName = "schoolName" [matAutocomplete] = "schoolNameAuto">
             </mat-form-field>
+            <mat-autocomplete #schoolNameAuto = "matAutocomplete">
+                <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
+                <ng-container *ngIf = "!isLoading">
+                        <mat-option *ngFor = "let option of filteredUnivsOptions" [value] = "option"> {{option}} </mat-option>
+                </ng-container>
+    
+            </mat-autocomplete>
         </div>
         <div class="row pb-1">
             <div class="col-md-6">
@@ -21,7 +28,7 @@
                         <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
             </div>
-            <div *ngIf = "!eduForm.controls.checked.value" class="col-md-6">
+            <div *ngIf = "!eduForm.get('stillStudying').value" class="col-md-6">
                     <mat-form-field class="full-width">
                             <mat-label>YearEnded</mat-label>
                             <input matInput [matDatepicker]="picker" formControlName = "yearEnded">
@@ -31,15 +38,18 @@
             </div>
         </div>
         <div class="row ml-1 mr-1 pb-1">
-            <mat-checkbox  formControlName = "checked">Still Studying ? </mat-checkbox>
+            <mat-checkbox  formControlName = "stillStudying">Still Studying ? </mat-checkbox>
         </div>
         <div class="row pb-1">
             <div class="col-6">
                 <mat-form-field class="full-width">
                     <mat-label>TypeOfDegree</mat-label>
-                    <input matInput formControlName = "typeOfDegree">
+                    <input matInput formControlName = "typeOfDegree" [matAutocomplete] = "degreeTypeAuto">
                 </mat-form-field>
             </div>
+            <mat-autocomplete #degreeTypeAuto = "matAutocomplete">
+                <mat-option *ngFor = "let typeOfDegree of filteredDegreeOptions | async" [value] = "typeOfDegree">{{typeOfDegree}}</mat-option>
+            </mat-autocomplete>
             <div class="col-6">
                 <mat-form-field class="full-width">
                         <mat-label>Course</mat-label>

@@ -1,16 +1,17 @@
-import { Util } from './../Util';
 export class Certification{
 
     public name: string;
-    public yearIssued: string;
-    public yearExpired: string;
+    public yearIssued: Date;
+    public yearExpired: Date;
     public link : string;
+    public isNeverExpires: boolean;
 
-    constructor(name: string, yearIssued: string, yearExpired: string, link: string){
+    constructor(name: string, yearIssued: Date, yearExpired: Date, link: string, isNeverExpires: boolean){
         this.name = name;
-        this.yearIssued = this.convertStringToDate(yearIssued);
-        this.yearExpired = this.convertStringToDate(yearExpired);
+        this.yearIssued = yearIssued;
+        this.yearExpired = yearExpired;
         this.link = link;
+        this.isNeverExpires = isNeverExpires;
     }
 
     dateValue: string;

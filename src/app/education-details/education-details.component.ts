@@ -1,5 +1,7 @@
+import { AlertDialogComponent } from './../alert-dialog/alert-dialog.component';
+import { EducationEvent } from './EducationEvent';
 import { EducationDialogComponent } from './../education-dialog/education-dialog.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 import { Education } from './Education';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
@@ -11,8 +13,8 @@ import { FormGroup } from '@angular/forms';
 })
 export class EducationDetailsComponent implements OnInit {
 
-  @Input() educationArray: Array<Education>
-  @Output() edu = new EventEmitter<Education>();
+  @Input() education: Education;
+  @Output() eduEvent = new EventEmitter<EducationEvent>();
 
   constructor(private matDialog: MatDialog) { }
 
@@ -21,23 +23,50 @@ export class EducationDetailsComponent implements OnInit {
   }
 
 
+  openEducationEditDialog(education: Education) {
 
-  openEducationAddDialog() {
-
-    const dialogRef  = this.matDialog.open(EducationDialogComponent, {
+    const dialogRef = this.matDialog.open(EducationDialogComponent, {
       width: '800px',
-      height: '500px'
+      height: '500px',
+      data: {
+        schoolName: education.schoolName,
+        yearStarted: education.yearStarted,
+        yearEnded: education.yearEnded,
+        typeOfDegree: education.typeOfDegree,
+        courseName: education.courseName,
+        gpa: education.gpa,
+        stillStudying: education.stillStudying
+      }
     })
 
     dialogRef.afterClosed().subscribe((form : FormGroup) => {
+      if (form != undefined) {
+        this.eduEvent.emit(new EducationEvent(new Education(form.value.schoolName, form.value.yearStarted, form.value.yearEnded, form.value.typeOfDegree,
+        form.value.courseName, form.value.gpa, form.value.stillStudying), "EDIT", education));
+      }
+    })
 
-      if ( form != undefined) {
+  }
 
-        this.edu.emit(new Education (form.value.schoolName, form.value.yearStarted, form.value.yearEnded, form.value.typeOfDegree,
-          form.value.courseName, form.value.gpa));
+
+  removeEducation(education: Education){
+
+    const dialogRef  = this.matDialog.open(AlertDialogComponent, {
+      data : {
+        deleteLabel : "Education"
+      }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if ( result == "confirm") {
+        console.log("removing the edu detail");
+        this.eduEvent.emit(new EducationEvent(education, "DELETE", undefined));
       }
 
-      console.log("education detils array after dialog closed", this.educationArray.toString())
+      if(result == "discard") {
+        console.log("I am deleting the edu detail !!!!")
+      }
     })
   }
 

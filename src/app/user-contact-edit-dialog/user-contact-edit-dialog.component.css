@@ -2,11 +2,17 @@
     width: 100%;
 }
 
-
-
 .title{
     margin: 0;
     border-bottom: 2px solid #673ab7;
     margin-bottom: 20px;
 }
 
+.img-lg{
+    width: 92px;
+    height: 92px;
+}
+
+.rounded{
+    border-radius: 0.25rem !important;
+}

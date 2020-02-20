@@ -1,21 +1,21 @@
-<div class="example-container">
+  <div class="example-container">
     <mat-toolbar color="primary" class="example-toolbar mat-elevation-z8">
         <mat-toolbar-row>
           <button mat-icon-button>
             <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
           </button>
-          <h1>TECHBLOG</h1>
+          <h1 class="example-app-name">TECHBLOG</h1>
         </mat-toolbar-row>
     </mat-toolbar>
     <mat-sidenav-container class="example-sidenav-container">
       <mat-sidenav #sidenav mode="over" role="navigation">
-        <!-- <i (click)= "sidenav.close()" class="material-icons cross-button pl-auto">close</i> -->
+      <!-- <i (click)= "sidenav.close()" class="material-icons cross-button pl-auto">close</i> -->
         <mat-nav-list>
-    
+  
           <h2 matSubheader>Tech Blog</h2>
-    
+
           <a mat-list-item class = "list-item" routerLink= "/" style="height: 0;"></a>
-    
+
           <a *ngFor = "let techBlogRoute of techBlogRoutes"
           mat-list-item
           (click) = "sidenav.close()"
@@ -23,19 +23,19 @@
           routerLinkActive = "list-item-active" >
           <i class="fab fa-java list-item"></i>
           {{techBlogRoute.title}}</a>
-    
+
           <mat-divider></mat-divider>
-    
+
           <h2 matSubheader>TOOLS</h2>
-    
+
           <a *ngFor =  "let techTool of techTools" 
             mat-list-item
             (click) = "sidenav.close()"  routerLink = "/" routerLinkActive= "list-item-active" class="list-item">
             {{techTool}}
           </a>
-    
+
           <mat-divider></mat-divider>
-    
+
           <h2 matSubheader>USER</h2>
           <a mat-list-item (click) = "sidenav.close()" routerLink="profile" routerLinkActive="list-item-active">
             <mat-icon matListIcon class = "list-item" >perm_identity</mat-icon>
@@ -48,20 +48,19 @@
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <div class ="container-fluid">
-            <router-outlet></router-outlet>
-        </div>
+          <div class ="container-fluid">
+              <router-outlet></router-outlet>
+          </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
-</div>
+  </div>  
+
 
 <ng-template #logOutAlert>
     <div class="row">
         <i (click) = "onCrossClick()" class="material-icons cross-button">close</i>
     </div>
-    <mat-dialog-content class="text-warning">
-       <h5>ARE YOU SURE YOU WANT TO LOGOUT ?</h5>
-    </mat-dialog-content>
+    <p class="text-center text-warning font-weight-bold p-3">ARE YOU SURE YOU WANT TO LOGOUT ?</p>
     <mat-dialog-actions>
         <div class="row ml-auto mr-1 pt-3">
             <button (click) = "onLogOutAlretOK()" mat-stroked-button>OK</button>

@@ -1,17 +1,18 @@
+import { AlertDialogComponent } from './../alert-dialog/alert-dialog.component';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Component, OnInit, Inject } from '@angular/core';
-import { stringify } from '@angular/compiler/src/util';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-work-exp-add-dialog',
   templateUrl: './work-exp-add-dialog.component.html',
   styleUrls: ['./work-exp-add-dialog.component.css']
 })
-export class WorkExpAddDialogComponent implements OnInit {
+export class WorkExpAddDialogComponent implements OnInit{
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: any, 
-              private dialogRef: MatDialogRef<WorkExpAddDialogComponent>, private fb: FormBuilder) { }
+              private dialogRef: MatDialogRef<WorkExpAddDialogComponent>, private fb: FormBuilder,
+              private matDialog: MatDialog) { }
 
   workExpForm: FormGroup;
      
@@ -27,7 +28,7 @@ export class WorkExpAddDialogComponent implements OnInit {
         yearEnded : [],
         location: [],
         responsibilities : [],
-        isCurrent :[]
+        stillWorking :[]
       })
 
     }else{
@@ -39,10 +40,10 @@ export class WorkExpAddDialogComponent implements OnInit {
         yearEnded : [this.data.yearEnded],
         location: [this.data.location],
         responsibilities : [this.data.responsibilities],
-        isCurrent :[]
+        stillWorking :[this.data.stillWorking]
       })
 
-      console.log("respnse in dialog ", this.data.responsibilities)
+      console.log("response in dialog ", this.data.responsibilities)
 
     }
   }
@@ -56,13 +57,35 @@ export class WorkExpAddDialogComponent implements OnInit {
     return this.workExpForm.get('companyName');
   }
 
-  onNoClick(){
-    this.dialogRef.close();
+  onNoClick() {
+    const dialogRef = this.matDialog.open(AlertDialogComponent, {
+      data: {
+        cancelAlert: 'cancel'
+      }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == "confirm") {
+        this.dialogRef.close();
+      }
+    })
   }
 
-  onClose(){
-    this.dialogRef.close();
+  onClose() {
+    const dialogRef = this.matDialog.open(AlertDialogComponent, {
+      data: {
+        closeAlert: 'close'
+      }
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result == "confirm") {
+        this.dialogRef.close();
+      }
+    })
   }
+
+ 
 
 
 }

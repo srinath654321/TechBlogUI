@@ -7,6 +7,9 @@
     border-radius: 0.25rem !important;
 }
 
+.d-xl-bloc {
+  display: block!important;
+}
 
 .card-title{
     border-bottom: 2px solid blue;
@@ -21,10 +24,6 @@
   padding: 40px;
 }
 
-.skillBack{
-  background: #eeeeee;
-  padding: 20px;
-}
 
 
 .certify a:hover {

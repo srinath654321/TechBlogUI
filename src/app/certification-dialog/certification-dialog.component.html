@@ -21,7 +21,7 @@
                         <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
             </div>
-            <div *ngIf = "!certificationsForm.controls.checked.value" class="col-md-6">
+            <div *ngIf = "!certificationsForm.get('isNeverExpires').value" class="col-md-6">
                     <mat-form-field class="full-width">
                             <mat-label>YearExpired</mat-label>
                             <input matInput [matDatepicker]="picker" formControlName = "yearExpired">
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="row ml-1 mr-1 pb-1">
-            <mat-checkbox  formControlName = "checked">IsNeverExpired</mat-checkbox>
+            <mat-checkbox formControlName = "isNeverExpires">IsNeverExpired</mat-checkbox>
         </div>
         <div class="row ml-1 mr-1 pb-1">
             <mat-form-field class="full-width">
@@ -50,4 +50,3 @@
         <button mat-stroked-button  color = "primary" [disabled] = "certificationsForm.invalid" [mat-dialog-close] = "certificationsForm">SAVE</button>
     </div>
 </div>
-

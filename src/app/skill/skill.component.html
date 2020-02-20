@@ -1,0 +1,14 @@
+<div class="skillBack">
+    <div class="row">
+        <div class="pl-5 col-5 text-secondary font-weight-bold">{{skillExp.skill}}</div>
+        <div class = "col-5 text-secondary font-weight-bold">
+            <div *ngIf = "skillExp.experience">{{skillExp.experience}}  Years</div>
+        </div>
+        <div class="col-2">
+            <!-- <p>hello srinath how are you doing today</p> -->
+            <i class="material-icons float-right mr-3 cross-button"  (click) = "removeSkill(skillExp)">delete_outline</i>
+            <i class="material-icons float-right mr-2 cross-button"  (click) = "openSkillEditDialog(skillExp)">edit</i>
+        </div>
+    </div>
+</div>
+<mat-divider class="pb-3"></mat-divider>

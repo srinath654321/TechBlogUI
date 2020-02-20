@@ -13,6 +13,12 @@
     background: transparent;
 }
 
+.mat-button:hover{
+    background: #673ab7 !important;
+    color: white;
+    font-weight: bolder;
+}
+
 .mat-raised-button{
     color: white;
     font-weight: 400;
@@ -64,4 +70,9 @@ textarea.cdk-textarea-autosize-measuring {
     border-radius: 3px;
     background-color: #673ab7;
     cursor: pointer;
+}
+
+.mat-drawer-inner-container{
+    overflow-x: hidden !important;
+    padding-left: 15px;
 }

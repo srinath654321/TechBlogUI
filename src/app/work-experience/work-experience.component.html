@@ -1,0 +1,23 @@
+<div class="certify">
+    <div class="row">
+        <i class="material-icons ml-auto mr-2 cross-button"  (click) = "openWorkExpEditDialog(workExp)">edit</i>
+        <i class="material-icons mr-2 cross-button"  (click) = "removeWorkExp(workExp)">delete_outline</i>
+    </div>
+    <div class="row text-secondary font-weight-bold">{{workExp.role}}</div>
+    <div class="row text-secondary font-weight-bold">{{workExp.companyName}}</div>
+    <ng-container *ngIf = "workExp.yearStarted && workExp.yearEnded && !workExp.stillWorking">
+        <div class="row text-secondary font-weight-bold">{{workExp.yearStarted | date: 'shortDate'}} - {{workExp.yearEnded | date: 'shortDate'}}</div>
+    </ng-container>
+    <ng-container *ngIf = "workExp.yearStarted && workExp.stillWorking">
+        <div class="row text-secondary font-weight-bold">{{workExp.yearStarted | date: 'shortDate'}} - CURRENT</div>
+    </ng-container>
+    <div class="row text-secondary font-weight-bold" *ngIf = "workExp.location">{{workExp.location}}</div>
+    <div class="row text-secondary font-weight-bold pb-2 pt-2" *ngIf = "workExp.responsibilities">Responsibilities :</div>
+    <ng-container *ngIf = "workExp.responsibilities">
+        <pre *ngIf = "!show" class="formatted text-secondary font-weight-bold">{{showRespo}}</pre>
+        <pre *ngIf = "show" class="formatted text-secondary font-weight-bold">{{showRespo}}</pre>
+        <button mat-button *ngIf = "!show" (click)= "readMore()" class="text-center text-info formatted text-secondary font-weight-bold">ReadMore</button>
+        <button mat-button *ngIf = "show" (click)= "readLess()" class="text-center text-info formatted text-secondary font-weight-bold">ReadLess</button>
+    </ng-container>
+</div>
+<mat-divider class="pb-3 pt-3"></mat-divider> 

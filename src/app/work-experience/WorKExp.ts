@@ -1,22 +1,23 @@
-import { Util } from '../Util';
 
-export class workExp {
+export class WorkExp {
     public role: string;
     public companyName: string;
     public location: string;
-    public yearStarted: string;
-    public yearEnded: string;
+    public yearStarted: Date;
+    public yearEnded: Date;
     public responsibilities: string
-
-    constructor(role: string, companyName: string, location: string, yearStarted: string, yearEnded: string, responsibilities: string){
+    stillWorking :boolean;
+   
+    constructor(role: string, companyName: string, location: string, yearStarted: Date, yearEnded: Date, responsibilities: string, stillWorking: boolean){
         this.role =  role;
         this.companyName = companyName,
         this.location = location;
-        this.yearStarted = this.convertStringToDate(yearStarted),
-        this.yearEnded = this.convertStringToDate(yearEnded),
+        this.yearStarted = yearStarted,
+        this.yearEnded = yearEnded,
         console.log("constructor", this.yearEnded);
         this.responsibilities = responsibilities;
-        console.log("constructor", this.responsibilities)
+        this.stillWorking = stillWorking;
+        //console.log("constructor", this.responsibilities)
     }
 
 

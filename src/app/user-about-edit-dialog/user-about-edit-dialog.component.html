@@ -1,0 +1,31 @@
+<div class="card mb-3" style="border:0; border-bottom:1px solid white;">
+        <i (click)= "onClose()" class="material-icons ml-auto mr-2 cross-button">close</i>
+        <h2 mat-dialog-title><strong>EDIT USER PROFILE</strong></h2>
+        <mat-divider class="title mb-3"></mat-divider>
+    </div>
+    
+    <div mat-dialog-content >
+        <form [formGroup] = "aboutForm">
+            <div class="row ml-1 mr-1">
+                <mat-form-field class="full-width">
+                    <mat-label>About</mat-label>
+                    <textarea matInput  #input max-length = "500" formControlName= "about" class="form-field__textarea"></textarea>
+                    <mat-hint align = "left">Max 500 chars only</mat-hint>
+                    <mat-hint align= "end">{{input.value?.length || 0}}/500</mat-hint>
+                    <mat-error *ngIf = "about.invalid">
+                        About should be of 500 chars only
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </form>
+    </div>
+    
+    
+    <div class="mt-5">
+        <mat-divider class ="title mb-3"></mat-divider>
+        <div mat-dialog-actions>
+            <button mat-stroked-button color ="warn" class="mr-3" (click) = "onNoClick()">CANCEL</button>
+            <button mat-stroked-button  color = "primary" [disabled] = "aboutForm.invalid" [mat-dialog-close] = "aboutForm">SAVE</button>
+        </div>
+    </div>
+    

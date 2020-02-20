@@ -31,7 +31,7 @@ techBlogRoutes : ROUTE[] = [
     }
   ]
 
- techTools :string[] = ["SPRING", "HIBERNATE", "JACKSON", "DROPWIZARD", "MYSQL", "GUAVA", "GUICE", "GIT", ]  
+ techTools :string[] = ["SPRING", "HIBERNATE", "JACKSON", "DROPWIZARD", "MYSQL"]  
 
   constructor(private router: Router, private matDialog: MatDialog) { }
 
@@ -39,10 +39,7 @@ techBlogRoutes : ROUTE[] = [
   }
 
   onLogOut(){
-    this.matDialgRef = this.matDialog.open(this.logOutAlert, {
-      width : '450px',
-      height: '200px'
-    })
+    this.matDialgRef = this.matDialog.open(this.logOutAlert)
     
     // sessionStorage.clear();
     // this.router.navigate(['login']);

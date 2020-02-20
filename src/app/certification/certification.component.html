@@ -1,0 +1,17 @@
+<div class ="certify">
+    <div class="row">
+        <i class="material-icons ml-auto mr-2 cross-button"  (click) = "openCertificationEditDialog(certification)">edit</i>
+        <i class="material-icons mr-2 cross-button"  (click) = "removeCertification(certification)">delete_outline</i>
+    </div>
+    <div class="row text-secondary font-weight-bold">{{certification.name}}</div>
+    <ng-container *ngIf = "certification.yearIssued && certification.isNeverExpires">
+        <div class="row text-secondary font-weight-bold" *ngIf = "certification.yearIssued">Issued Year : {{certification.yearIssued | date : 'shortDate'}}</div>
+    </ng-container>
+    <ng-container *ngIf = "certification.yearIssued && !certification.isNeverExpires">
+        <div class="row text-secondary font-weight-bold" *ngIf = "certification.yearIssued">Issued Year : {{certification.yearIssued | date : 'shortDate'}}</div>
+        <div class="row text-secondary font-weight-bold" *ngIf = "certification.yearExpired">Expired Year : {{certification.yearExpired | date : 'shortDate'}}</div>
+    </ng-container>
+
+    <div class="row text-secondary font-weight-bold" *ngIf = "certification.link"><a href="{{certification.link}}">{{certification.link}}</a></div>
+</div>
+<mat-divider class="pb-3 pt-3"></mat-divider>
