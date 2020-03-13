@@ -14,7 +14,7 @@ export class UserContactEditDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<UserContactEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder) { }
 
-  imageLocation : string;
+    imageData : string;
 
   ngOnInit() {
 
@@ -24,25 +24,25 @@ export class UserContactEditDialogComponent implements OnInit {
       fullName: [this.data.fullName,[
         Validators.required,
       ]],
-      email: [this.data.email ,[
+      email: [this.data.email,[
         Validators.required,
         Validators.email
       ]],
-      role: [this.data.role,[
+      role: [this.data.role, [
         Validators.required
       ]],
       address: [this.data.address ,[
         Validators.required,
       ]],
-      phone: [this.data.phone, [
+      phoneNumber: [this.data.phoneNumber, [
         Validators.required,
         Validators.minLength(10)
       ]], 
-      imageLocation: [this.data.imageLocation]
+      imageData: [this.data.imageData]
     });
 
-    console.log("profile form ", this.profileForm.get('imageLocation').value)
-    this.imageLocation = this.profileForm.get('imageLocation').value;
+    console.log("profile form ", this.profileForm.get('imageData').value)
+    this.imageData = this.profileForm.get('imageData').value;
   }
 
   onNoClick(){
@@ -56,17 +56,17 @@ export class UserContactEditDialogComponent implements OnInit {
     console.log("file event started ",event);
     this.selectedFile = <File>event.target.files[0];
     this.profileForm.patchValue({
-      imageLocation : this.selectedFile
+      imageData : this.selectedFile
     })
-    this.profileForm.get('imageLocation').updateValueAndValidity()
+    this.profileForm.get('imageData').updateValueAndValidity()
     this.fileName = this.selectedFile.name;
     console.log("selected file ",  this.selectedFile);
     const reader = new FileReader();
     reader.onload = () => {
-      this.imageLocation = reader.result as string;
+      this.imageData = reader.result as string;
     }
     reader.readAsDataURL(this.selectedFile)
-    console.log("image location now ", this.imageLocation)
+    console.log("image location now ", this.imageData)
   }
 
   onClose(){
@@ -89,9 +89,11 @@ export class UserContactEditDialogComponent implements OnInit {
     return this.profileForm.get('address');
   }
 
-  get phone(){
-    return this.profileForm.get('phone');
+  get phoneNumber(){
+    return this.profileForm.get('phoneNumber');
   }
+
+  
 
 
 }

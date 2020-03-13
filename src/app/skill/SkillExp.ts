@@ -1,6 +1,6 @@
 export class SkillExp {
     constructor(
-        public skill: string,
+        public name: string,
         public experience: number
 
     ){

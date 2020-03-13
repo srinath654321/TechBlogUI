@@ -28,7 +28,7 @@ export class CertificationComponent implements OnInit {
     if(certification != undefined) {
       let dialogRef = this.matDialog.open(AlertDialogComponent, {
         data:{
-          label: "certification"
+          deleteLabel: "certification"
         }
       })
 
@@ -62,8 +62,12 @@ export class CertificationComponent implements OnInit {
     dialogRef.afterClosed().subscribe((form: FormGroup) => {
 
       if (form != undefined) {
+        console.log("edited certificate form", form)
+        if (form.value.isNeverExpires == true) {
+          form.value.yearExpired == null;
+        }
         this.certificationEvent.emit(new CertificationEvent(new Certification(form.value.name,
-          form.value.yearIssue, form.value.yearExpired, form.value.link, form.value.isNeverExpires), "EDIT", certification));
+          form.value.yearIssued, form.value.yearExpired, form.value.link, form.value.isNeverExpires), "EDIT", certification));
       }
     })
   }

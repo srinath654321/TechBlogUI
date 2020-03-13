@@ -27,14 +27,14 @@ export class SkillComponent implements OnInit {
       width: '800px',
       height: '400px',
       data:{
-        skill: skillExp.skill,
+        name: skillExp.name,
         experience: skillExp.experience
       }
     })
 
     dialogRef.afterClosed().subscribe((form: FormGroup) => {
       if (form != undefined) {
-        this.skillExpEvent.emit(new SkillExpEvent(new SkillExp(form.value.skill, form.value.experience), "EDIT", skillExp));
+        this.skillExpEvent.emit(new SkillExpEvent(new SkillExp(form.value.name, form.value.experience), "EDIT", skillExp));
       }
     }) 
   }

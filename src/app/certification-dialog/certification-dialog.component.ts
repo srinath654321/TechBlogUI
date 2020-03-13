@@ -15,15 +15,22 @@ export class CertificationDialogComponent implements OnInit {
   private matDialog: MatDialog) { }
 
   certificationsForm : FormGroup;
+  yearExpired:any;
 
   ngOnInit() {
 
     if( this.data != undefined) {
 
+      if (this.data.yearExpired == undefined) {
+        this.yearExpired = undefined;
+      }else{
+        this.yearExpired = new Date(this.data.yearExpired)
+      }
+
       this.certificationsForm = this.fb.group({
         name: [this.data.name , [Validators.required]],
-        yearIssued: [this.data.yearIssued],
-        yearExpired :[this.data.yearExpired],
+        yearIssued: [new Date(this.data.yearIssued)],
+        yearExpired :[this.yearExpired],
         link: [this.data.link],
         isNeverExpires: [this.data.isNeverExpires]    
       })
@@ -35,7 +42,7 @@ export class CertificationDialogComponent implements OnInit {
         yearIssued: [],
         yearExpired :[],
         link: [],
-        checked: []    
+        isNeverExpires: []    
       })
 
     }

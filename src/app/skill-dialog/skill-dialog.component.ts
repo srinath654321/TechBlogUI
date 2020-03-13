@@ -20,12 +20,12 @@ export class SkillDialogComponent implements OnInit {
 
     if (this.data != undefined) {
       this.skillForm = this.fb.group({
-        skill : [this.data.skill],
+        name : [this.data.name],
         experience: [this.data.experience]
       })
     }else {
       this.skillForm = this.fb.group({
-        skill : [''],
+        name : [''],
         experience: ['']
       });
     }

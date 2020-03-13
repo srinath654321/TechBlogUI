@@ -7,7 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatIconModule, MatSnackBarModule, MatProgressBarModule } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { JavaComponent } from './java/java.component';
 import { SqlComponent } from './sql/sql.component';
@@ -27,6 +27,8 @@ import { CertificationComponent } from './certification/certification.component'
 import { CertificationDialogComponent } from './certification-dialog/certification-dialog.component';
 import { SkillComponent } from './skill/skill.component';
 import { SkillDialogComponent } from './skill-dialog/skill-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { SkillDialogComponent } from './skill-dialog/skill-dialog.component';
     CertificationDialogComponent,
     SkillComponent,
     SkillDialogComponent,
+    ContactComponent,
   ],
   entryComponents: [AlertDialogComponent, EducationDialogComponent, UserContactEditDialogComponent, 
     WorkExpAddDialogComponent,SkillDialogComponent, CertificationDialogComponent, 
@@ -78,7 +81,11 @@ import { SkillDialogComponent } from './skill-dialog/skill-dialog.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatAutocompleteModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [MatNativeDateModule, TruncatePipe],
   bootstrap: [AppComponent]

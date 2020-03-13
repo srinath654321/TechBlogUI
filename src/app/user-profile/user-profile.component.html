@@ -16,50 +16,24 @@
     </div>
     <div class="col-xl-8">
         <section id="about">
+            <mat-progress-bar mode={{summaryMode}}></mat-progress-bar>
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openAboutEditDialog()">edit</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">
                     <h4>About</h4>
                 </div>
                 <div class="card-body">
-                    <p>{{about}}</p>
+                    <p class="text-secondary font-weight-bolder">{{about}}</p>
                 </div>
             </div>
         </section>
-        <section id="contact">
-            <div class="card  stretch-card mat-elevation-z8 mb-4">
-                <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openContactEditDialog()">edit</i>
-                <div class="d-flex flex-row card-title ml-3 mr-3">
-                    <h4>Contact</h4>
-                </div>
-                <div class="card-body">
-                    <!-- <div class="d-flex flex-row">
-                        <i class="material-icons cross-button ml-auto mr-2" (click) = "openProfileEditDialog()">edit</i>
-                    </div> -->
-                    <div class="d-flex flex-row">
-                            <img src={{imageLocation}} class="img-lg rounded">
-                            <div class="ml-3">
-                                <h6>{{fullName}}</h6>   
-                                <p class="text-muted">{{email}}</p>
-                                <p class="mt-2 text-success font-weight-bold">{{role}}</p>
-                            </div>
-                            <!-- <div class="ml-auto mr-2 edit" (click) = "openDialog()">
-                                
-                            </div> -->
-                    </div>
-                    <div class="d-flex flex-row pt-4">
-                            <i class="material-icons">local_post_office</i>
-                        <p class="text-secondary  font-weight-bold ml-3">{{address}}</p>
-                    </div>
-                    <div class="d-flex flex-row pt-2">
-                            <i class="material-icons">local_phone</i>
-                            <p class="text-secondary font-weight-bold ml-3">{{phone}}</p>
-                    </div>
-                </div>
-            </div>
+        <section id="contact" *ngIf = "contact">
+            <mat-progress-bar mode={{contactMode}}></mat-progress-bar>
+            <contact [contact] = "contact" (contactEditEvent) = "fireContactEditEvent($event)"></contact>
         </section>
 
         <section id="skill">
+            <mat-progress-bar mode={{skillMode}}></mat-progress-bar>
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openSkillAddDialog()">add</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">
@@ -73,6 +47,7 @@
         </section>
 
         <section id="certifications">
+            <mat-progress-bar mode={{certificationMode}}></mat-progress-bar>
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openCertificationsAddDialog()">add</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">
@@ -86,6 +61,7 @@
         </section>
 
         <section id="workexp">
+            <mat-progress-bar mode={{workExpMode}}></mat-progress-bar>
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openWorkExpAddDialog()">add</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">
@@ -99,6 +75,7 @@
         </section>
 
         <section id= "education">
+            <mat-progress-bar mode={{educationMode}}></mat-progress-bar>
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openEducationAddDialog()">add</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">

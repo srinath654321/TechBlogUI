@@ -1,15 +1,73 @@
+import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { User } from './user-profile/User';
 import { Certification } from './certification/Certification';
 import { SkillExp } from './skill/SkillExp';
 import { WorkExp } from './work-experience/WorKExp';
 import { Injectable } from '@angular/core';
 import { Education } from './education-details/Education';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UrlSegment } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
+
+  url = "http://localhost:8123/user";
+
+  // Http Options
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  } 
+
+  getUser(): Observable<User> {
+    return this.httpClient.get<User>(this.url+"/srinath.kavuri", this.httpOptions);
+  }
+
+  saveUser(user: User):Observable<User> {
+    console.log("saving user data ", JSON.stringify(user));
+    return this.httpClient.post<User>(this.url, user, this.httpOptions);
+  }
+
+  saveSummary(user: User) : Observable<User> {
+    return this.saveUser(user);
+  }
+
+  saveCertificate(user: User):Observable<User> {
+    return this.saveUser(user);
+  }
+
+  saveSkill(user: User) : Observable<User> {
+    return this.saveUser(user);
+  }
+
+  saveWorkExp(user: User) : Observable<User> {
+    return this.saveUser(user);
+  }
+
+  saveAbout(user: User) : Observable<User> {
+    return this.saveUser(user);
+  }
+
+  saveEducation(user: User) : Observable<User> {
+    return this.saveUser(user);
+  }
+
+  // getContact():Contact {
+  //   return new Contact ( "srinat kavuri", )
+  //   this.imageLocation = "assets/images/SRINATH.jpg";
+ 
+  //   this.email = "srinath.kavuri@gmail.com"
+  //   this.role = "Developer";
+  //   this.address = "2000 E Roger Road Apt#I22 87719";
+  //   this.phone = "+1 913 284 4805";
+  //   this.about = "Experienced Application Developer with a demonstrated history of working in the information technology and services industry. Skilled in Java,Angular,Dropwizard,Spring,Hibernate,HTML,CSS,Bootstrap and Strong engineering professional graduated from University of Central Missouri.";
+  // }
   
 
   getSkillsInfo(): Array<SkillExp> {
