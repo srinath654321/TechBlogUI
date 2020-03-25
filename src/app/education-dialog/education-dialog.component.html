@@ -28,7 +28,7 @@
                         <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
             </div>
-            <div *ngIf = "!eduForm.get('stillStudying').value" class="col-md-6">
+            <div *ngIf = "!eduForm.get('isStillStudying').value" class="col-md-6">
                     <mat-form-field class="full-width">
                             <mat-label>YearEnded</mat-label>
                             <input matInput [matDatepicker]="picker" formControlName = "yearEnded">
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="row ml-1 mr-1 pb-1">
-            <mat-checkbox  formControlName = "stillStudying">Still Studying ? </mat-checkbox>
+            <mat-checkbox  formControlName = "isStillStudying">Still Studying ? </mat-checkbox>
         </div>
         <div class="row pb-1">
             <div class="col-6">

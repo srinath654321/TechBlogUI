@@ -5,10 +5,10 @@
     </div>
     <div class="row text-secondary font-weight-bold">{{workExp.role}}</div>
     <div class="row text-secondary font-weight-bold">{{workExp.companyName}}</div>
-    <ng-container *ngIf = "workExp.yearStarted && workExp.yearEnded && !workExp.stillWorking">
+    <ng-container *ngIf = "workExp.yearStarted && workExp.yearEnded && !workExp.isStillWorking">
         <div class="row text-secondary font-weight-bold">{{workExp.yearStarted | date: 'shortDate'}} - {{workExp.yearEnded | date: 'shortDate'}}</div>
     </ng-container>
-    <ng-container *ngIf = "workExp.yearStarted && workExp.stillWorking">
+    <ng-container *ngIf = "workExp.yearStarted && workExp.isStillWorking">
         <div class="row text-secondary font-weight-bold">{{workExp.yearStarted | date: 'shortDate'}} - CURRENT</div>
     </ng-container>
     <div class="row text-secondary font-weight-bold" *ngIf = "workExp.location">{{workExp.location}}</div>

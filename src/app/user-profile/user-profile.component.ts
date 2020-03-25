@@ -73,28 +73,39 @@ export class UserProfileComponent implements OnInit {
 
       if (data.certificationList == undefined) {
         this.certificationArray = []
+        data.certificationList = this.certificationArray;
       }else {
         this.certificationArray = data.certificationList;
       }
 
       if (data.workExperienceList == undefined) {
         this.workExpArray =  []
+        data.workExperienceList = this.workExpArray;
       } else {
         this.workExpArray = data.workExperienceList;
       }
 
       if (data.skillList == undefined) {
         this.skillExpArray = [];
+        data.skillList = this.skillExpArray;
       } else {
         this.skillExpArray = data.skillList;
       }
 
+      console.log("edu", data.educationList);
+
       if (data.educationList == undefined) {
+        console.log("education list is undefined")
         this.educationArray = [];
+        data.educationList = this.educationArray;
       } else {
         this.educationArray = data.educationList;
       }
+
+      console.log("edu", data.educationList);
     },
+
+    
 
     (err: HttpErrorResponse) => {
       if (err.error instanceof Error) {
@@ -182,10 +193,21 @@ export class UserProfileComponent implements OnInit {
     }else if (workExpEvent.eventType == "EDIT") {
       let index = this.workExpArray.indexOf(workExpEvent.oldWorkExp);
       this.workExpArray[index] = workExpEvent.newWorkExp;
-      this.saveWorkExp(workExpEvent.oldWorkExp, this.workExpArray);
+      this.saveWorkExp(undefined, this.workExpArray, workExpEvent, true);
     }else if (workExpEvent.eventType = "DELETE") {
       this.workExpArray = this.workExpArray.filter(workExp => workExp != workExpEvent.newWorkExp);
-      this.saveWorkExp(workExpEvent.oldWorkExp, this.workExpArray);
+      this.saveWorkExp(undefined, this.workExpArray, workExpEvent, true);
+    }
+  }
+
+  
+  undoWorkExpEvent(workExpEvent: WorkExpEvent) {
+
+    if (workExpEvent.eventType == "EDIT") {
+      let index = this.workExpArray.indexOf(workExpEvent.newWorkExp);
+      this.workExpArray[index] = workExpEvent.oldWorkExp;
+    } else if (workExpEvent.eventType == "DELETE") {
+      this.workExpArray.push(workExpEvent.newWorkExp);
     }
   }
 
@@ -196,11 +218,21 @@ export class UserProfileComponent implements OnInit {
       this.educationArray.push(eduEvent.newEducation);
     }else if(eduEvent.eventType == "DELETE") {
       this.educationArray = this.educationArray.filter(edu => edu != eduEvent.newEducation);
-      this.saveEducation(undefined, this.educationArray);
+      this.saveEducation(undefined, this.educationArray, eduEvent, true);
     }else if( eduEvent.eventType = "EDIT") {
       let index = this.educationArray.indexOf(eduEvent.oldEducation);
       this.educationArray[index] = eduEvent.newEducation;
-      this.saveEducation(undefined, this.educationArray);
+      this.saveEducation(undefined, this.educationArray, eduEvent, true);
+    }
+  }
+
+  undoEducationEvent(eduEvent : EducationEvent) {
+
+    if (eduEvent.eventType == "EDIT") {
+      let index = this.educationArray.indexOf(eduEvent.newEducation);
+      this.educationArray[index] = eduEvent.oldEducation;
+    } else if (eduEvent.eventType == "DELETE") {
+      this.educationArray.push(eduEvent.newEducation);
     }
   }
 
@@ -208,11 +240,21 @@ export class UserProfileComponent implements OnInit {
     console.log("certification event fire started " , certificationEvent);
     if(certificationEvent.eventType == "DELETE") {
       this.certificationArray = this.certificationArray.filter(certi => certi != certificationEvent.newCertification);
-      this.saveCertificate(undefined, this.certificationArray);
+      this.saveCertificate(undefined, this.certificationArray, certificationEvent, true);
     }else if( certificationEvent.eventType = "EDIT") {
       let index = this.certificationArray.indexOf(certificationEvent.oldCertification);
       this.certificationArray[index] = certificationEvent.newCertification;
-      this.saveCertificate(undefined, this.certificationArray);
+      this.saveCertificate(undefined, this.certificationArray, certificationEvent, true);
+    }
+  }
+
+  undoCertificationEvent(certificationEvent: CertificationEvent) {
+
+    if (certificationEvent.eventType == "EDIT") {
+      let index = this.certificationArray.indexOf(certificationEvent.newCertification);
+      this.certificationArray[index] = certificationEvent.oldCertification;
+    } else if (certificationEvent.eventType == "DELETE") {
+      this.certificationArray.push(certificationEvent.newCertification);
     }
   }
 
@@ -241,6 +283,29 @@ export class UserProfileComponent implements OnInit {
   }
 
  
+  openSkillAddDialog() {
+    const dialogRef = this.matDialog.open(SkillDialogComponent, {
+      width: '800px',
+      height: '400px',
+    })
+
+    dialogRef.afterClosed().subscribe((form: FormGroup) => {
+
+      console.log("skills dialog data after closed", form);
+
+      if (form != undefined) {
+        if (form.value.name != undefined && form.value.experience != undefined ) {
+          let skillExp = new SkillExp(form.value.name, form.value.experience);
+          this.saveSkill(skillExp, this.skillExpArray, undefined, false);
+        }else if( form.value.name != undefined && form.value.experience == undefined) {
+          let skillExp = new SkillExp(form.value.name, 0);
+          this.saveSkill(skillExp, this.skillExpArray, undefined, false);
+        }
+        console.log("skill exp array values ", this.skillExpArray.toString())
+      }
+    })
+  }
+
   openWorkExpAddDialog() {
     const dialogRef = this.matDialog.open(WorkExpAddDialogComponent, {
       width: '900px',
@@ -253,9 +318,9 @@ export class UserProfileComponent implements OnInit {
         console.log("work exp form data ", form)
         if(form.value.companyName != undefined) {
           let workExp = new WorkExp(form.value.role, form.value.companyName, form.value.location, 
-            form.value.yearStarted, form.value.yearEnded, form.value.responsibilities, form.value.stillWorking);
+            form.value.yearStarted, form.value.yearEnded, form.value.responsibilities, form.value.isStillWorking);
             console.log("workexp object ", workExp)
-            this.saveWorkExp(workExp, this.workExpArray);
+            this.saveWorkExp(workExp, this.workExpArray, undefined, false);
       }
     }
 
@@ -274,8 +339,9 @@ export class UserProfileComponent implements OnInit {
     dialogRef.afterClosed().subscribe((form : FormGroup) => {
 
       if ( form != undefined) {
-        this.educationArray.push(new Education (form.value.schoolName, form.value.yearStarted, form.value.yearEnded, form.value.typeOfDegree,
-          form.value.courseName, form.value.gpa, form.value.stillStudying));
+        let education = new Education (form.value.schoolName, form.value.yearStarted, form.value.yearEnded, form.value.typeOfDegree,
+          form.value.courseName, form.value.gpa, form.value.stillStudying);
+          this.saveEducation(education, this.educationArray, undefined, false);
       }
 
       console.log("education detils array after dialog closed", this.educationArray.toString())
@@ -295,53 +361,24 @@ export class UserProfileComponent implements OnInit {
         if (form.value.name != undefined) {
             let certificate = new Certification(form.value.name, form.value.yearIssued, 
               form.value.yearExpired, form.value.link, form.value.isNeverExpires);
-            this.saveCertificate(certificate, this.certificationArray);     
+            this.saveCertificate(certificate, this.certificationArray, undefined, false);     
         }
       }
       console.log("certifications array after dialog closed", this.certificationArray.toString())
     })
   }
 
-  saveCertificate(certificate: Certification, certificationArray : Array<Certification>) {
-    if (certificate != undefined) {
-      this.certificationArray.push(certificate);
-    }
-    if (this.user.userId != undefined) {
-      this.user.certificationList = this.certificationArray;
-    }
-    console.log("user objec before calling service", this.user)
-    this.certificationMode = "query";
-    this.userService.saveCertificate(this.user).subscribe((data: User) => {
-      console.log("user saved", data)
-      this.certificationMode = "determinate";
-      this.certificationArray = data.certificationList;
-    },
 
-    (err: HttpErrorResponse) => {
-      this.certificationMode = "indeterminate";
-      this.certificationArray = this.certificationArray.filter(certi => certi != certificate);
-      if (this.user.certificationList != undefined) {
-        this.user.certificationList = this.certificationArray;
-      }
-      console.log("user object after failure", this.user);
-      this.util.openSnackbar("certificate data is not saved please retry");
-      if (err.error instanceof Error) {
-        console.log("client side error");
-      }else {
-        console.log("server side error");
-      }
-    }
-    
-    )
-  }
 
-  saveEducation(education: Education, educationArray : Array<Education>) {
+  saveEducation(education: Education, educationArray : Array<Education>, eduEvent: EducationEvent, isEvent: boolean) {
     if (education != undefined) {
       this.educationArray.push(education);
     }
+
     if (this.user.educationList != undefined && this.user.userId != undefined) {
       this.user.educationList = this.educationArray;
     }
+
     console.log("user objec before calling service", this.user)
     this.educationMode = "query";
     this.userService.saveEducation(this.user).subscribe((data: User) => {
@@ -352,10 +389,17 @@ export class UserProfileComponent implements OnInit {
 
     (err: HttpErrorResponse) => {
       this.educationMode = "indeterminate";
-      this.educationArray = this.educationArray.filter(edu => edu != education);
+
+      if (isEvent) {
+        this.undoEducationEvent(eduEvent);
+      } else {
+        this.educationArray = this.educationArray.filter(edu => edu != education);
+      }
+
       if (this.user.educationList != undefined) {
         this.user.educationList = this.educationArray;
       }
+
       console.log("user object after failure", this.user);
       this.util.openSnackbar("education data is not saved please retry");
       if (err.error instanceof Error) {
@@ -368,16 +412,19 @@ export class UserProfileComponent implements OnInit {
     )
   }
 
+  saveWorkExp(workExp: WorkExp , workExpArray: Array<WorkExp>, workExpEvent: WorkExpEvent, isEvent: boolean) {
 
-  saveWorkExp(workExp: WorkExp , workExpArray: Array<WorkExp>) {
     if (workExp != undefined) {
       this.workExpArray.push(workExp);
       console.log("pushed to workexp array ", this.workExpArray);
     }
 
-    if (this.user.userId != undefined) {
+    console.log("work exp event ", workExpEvent)
+
+    if (this.user.workExperienceList != undefined) {
       this.user.workExperienceList = this.workExpArray;
     }
+
     console.log("user objec before calling service", this.user)
     this.workExpMode = "query";
     this.userService.saveWorkExp(this.user).subscribe((data: User) => {
@@ -388,12 +435,60 @@ export class UserProfileComponent implements OnInit {
 
     (err: HttpErrorResponse) => {
       this.workExpMode = "indeterminate";
-      this.workExpArray = this.workExpArray.filter(workExp => workExp != workExp);
+      if (isEvent) {
+        this.undoWorkExpEvent(workExpEvent);
+      } else {
+        this.workExpArray = this.workExpArray.filter(workExp => workExp != workExp);
+      }
+
       if (this.user.workExperienceList != undefined) {
         this.user.workExperienceList = this.workExpArray;
       }
+
       console.log("user object after failure", this.user);
       this.util.openSnackbar("work experience data is not saved please retry");
+      if (err.error instanceof Error) {
+        console.log("client side error");
+      }else {
+        console.log("server side error");
+      }
+    }
+    
+    )
+  }
+
+  saveCertificate(certificate: Certification, certificationArray : Array<Certification>, certificationEvent: CertificationEvent, isEvent: boolean) {
+    if (certificate != undefined) {
+      this.certificationArray.push(certificate);
+    }
+
+    console.log ("edu event ", certificationEvent)
+
+    if (this.user.certificationList != undefined) {
+      this.user.certificationList = this.certificationArray;
+    }
+
+    console.log("user objec before calling service", this.user)
+    this.certificationMode = "query";
+    this.userService.saveCertificate(this.user).subscribe((data: User) => {
+      console.log("user saved", data)
+      this.certificationMode = "determinate";
+      this.certificationArray = data.certificationList;
+    },
+
+    (err: HttpErrorResponse) => {
+      this.certificationMode = "indeterminate";
+      if (isEvent) {
+        this.undoCertificationEvent(certificationEvent)
+      } else {
+        this.certificationArray = this.certificationArray.filter(certi => certi != certificate);
+      }
+
+      if (this.user.certificationList != undefined) {
+        this.user.certificationList = this.certificationArray;
+      }
+      console.log("user object after failure", this.user);
+      this.util.openSnackbar("certificate data is not saved please retry");
       if (err.error instanceof Error) {
         console.log("client side error");
       }else {
@@ -444,29 +539,6 @@ export class UserProfileComponent implements OnInit {
     )
   }
 
-
-  openSkillAddDialog() {
-    const dialogRef = this.matDialog.open(SkillDialogComponent, {
-      width: '800px',
-      height: '400px',
-    })
-
-    dialogRef.afterClosed().subscribe((form: FormGroup) => {
-
-      console.log("skills dialog data after closed", form);
-
-      if (form != undefined) {
-        if (form.value.name != undefined && form.value.experience != undefined ) {
-          let skillExp = new SkillExp(form.value.name, form.value.experience);
-          this.saveSkill(skillExp, this.skillExpArray, undefined, false);
-        }else if( form.value.name != undefined && form.value.experience == undefined) {
-          let skillExp = new SkillExp(form.value.name, 0);
-          this.saveSkill(skillExp, this.skillExpArray, undefined, false);
-        }
-        console.log("skill exp array values ", this.skillExpArray.toString())
-      }
-    })
-  }
 
 
 

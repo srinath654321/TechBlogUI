@@ -67,6 +67,7 @@ export class WorkExperienceComponent implements OnInit, OnDestroy{
  
 
   openWorkExpEditDialog(workExperience: WorkExp) {
+    console.log("work exp in edit ", workExperience)
     const dialogRef = this.matDialog.open(WorkExpAddDialogComponent, {
         width: '900px',
         height: '800px',
@@ -77,7 +78,7 @@ export class WorkExperienceComponent implements OnInit, OnDestroy{
           yearStarted: workExperience.yearStarted,
           yearEnded: workExperience.yearEnded,
           responsibilities: workExperience.responsibilities,
-          stillWorking: workExperience.stillWorking
+          isStillWorking: workExperience.isStillWorking
         }
       })
     
@@ -87,7 +88,7 @@ export class WorkExperienceComponent implements OnInit, OnDestroy{
         console.log("work exp form data ", form)
         if(form.value.companyName != undefined) {
           this.workExpEvent.emit(new WorkExpEvent(new WorkExp(form.value.role, form.value.companyName, form.value.location, 
-            form.value.yearStarted, form.value.yearEnded, form.value.responsibilities, form.value.stillWorking), "EDIT", workExperience));
+            form.value.yearStarted, form.value.yearEnded, form.value.responsibilities, form.value.isStillWorking), "EDIT", workExperience));
       }
     }
 

@@ -6,16 +6,16 @@ export class Education{
     public typeOfDegree: string;
     public courseName: string;
     public gpa : number;
-    public stillStudying: boolean;
+    public isStillStudying: boolean;
 
 
-    constructor(schoolName: string, yearStarted: Date, yearEnded: Date, typeOfDegree: string, courseName: string, gpa: number, stillStudying: boolean){
+    constructor(schoolName: string, yearStarted: Date, yearEnded: Date, typeOfDegree: string, courseName: string, gpa: number, isStillStudying: boolean){
         this.schoolName = schoolName;
         this.yearStarted = yearStarted;
         this.yearEnded = yearEnded;
         this.typeOfDegree = typeOfDegree;
         this.courseName = courseName;
         this.gpa = gpa;
-        this.stillStudying = stillStudying;
+        this.isStillStudying = isStillStudying;
     }
 }

@@ -28,6 +28,7 @@ export class EducationDialogComponent implements OnInit {
 
   ngOnInit() {
 
+
     if ( this.data == undefined) {
       this.eduForm = this.fb.group({
         schoolName:[, [Validators.required]],
@@ -36,9 +37,18 @@ export class EducationDialogComponent implements OnInit {
         typeOfDegree:[, [Validators.required]],
         courseName:[, [Validators.required]],
         gpa:[],
-        stillStudying:[]
+        isStillStudying:[]
       })
     } else {
+
+      if (this.data.yearStarted != undefined) {
+        this.data.yearStarted = new Date(this.data.yearStarted);
+      }
+
+      if (this.data.yearEnded != undefined) {
+        this.data.yearEnded = new Date(this.data.yearEnded);
+      }
+      
       this.eduForm = this.fb.group({
         schoolName : [this.data.schoolName, [Validators.required]],
         yearStarted : [this.data.yearStarted],
@@ -46,7 +56,7 @@ export class EducationDialogComponent implements OnInit {
         typeOfDegree : [this.data.typeOfDegree, [Validators.required]],
         courseName : [this.data.courseName, [Validators.required]],
         gpa : [this.data.gpa],
-        stillStudying : [this.data.stillStudying]
+        stillStudying : [this.data.isStillStudying]
       })
     }
  

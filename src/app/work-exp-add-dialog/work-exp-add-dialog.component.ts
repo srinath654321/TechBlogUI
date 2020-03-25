@@ -19,7 +19,7 @@ export class WorkExpAddDialogComponent implements OnInit{
 
   ngOnInit() {
 
-    if(this.data == undefined) {
+    if (this.data == undefined) {
 
       this.workExpForm = this.fb.group({
         role: [,[Validators.required]],
@@ -28,10 +28,19 @@ export class WorkExpAddDialogComponent implements OnInit{
         yearEnded : [],
         location: [],
         responsibilities : [],
-        stillWorking :[]
+        isStillWorking :[]
       })
 
-    }else{
+    } else {
+
+      
+      if (this.data.yearStarted != undefined) {
+        this.data.yearStarted = new Date(this.data.yearStarted);
+      }
+
+      if (this.data.yearEnded != undefined) {
+        this.data.yearEnded = new Date(this.data.yearEnded);
+      }
 
       this.workExpForm = this.fb.group({
         role: [ this.data.role ,[Validators.required]],
@@ -40,7 +49,7 @@ export class WorkExpAddDialogComponent implements OnInit{
         yearEnded : [this.data.yearEnded],
         location: [this.data.location],
         responsibilities : [this.data.responsibilities],
-        stillWorking :[this.data.stillWorking]
+        isStillWorking :[this.data.isStillWorking]
       })
 
       console.log("response in dialog ", this.data.responsibilities)

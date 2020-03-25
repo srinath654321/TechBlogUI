@@ -6,9 +6,9 @@ export class WorkExp {
     public yearStarted: Date;
     public yearEnded: Date;
     public responsibilities: string
-    stillWorking :boolean;
+    isStillWorking :boolean;
    
-    constructor(role: string, companyName: string, location: string, yearStarted: Date, yearEnded: Date, responsibilities: string, stillWorking: boolean){
+    constructor(role: string, companyName: string, location: string, yearStarted: Date, yearEnded: Date, responsibilities: string, isStillWorking: boolean){
         this.role =  role;
         this.companyName = companyName,
         this.location = location;
@@ -16,7 +16,7 @@ export class WorkExp {
         this.yearEnded = yearEnded,
         console.log("constructor", this.yearEnded);
         this.responsibilities = responsibilities;
-        this.stillWorking = stillWorking;
+        this.isStillWorking = isStillWorking;
         //console.log("constructor", this.responsibilities)
     }
 

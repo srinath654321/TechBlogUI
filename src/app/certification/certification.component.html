@@ -12,6 +12,6 @@
         <div class="row text-secondary font-weight-bold" *ngIf = "certification.yearExpired">Expired Year : {{certification.yearExpired | date : 'shortDate'}}</div>
     </ng-container>
 
-    <div class="row text-secondary font-weight-bold" *ngIf = "certification.link"><a href="{{certification.link}}">{{certification.link}}</a></div>
+    <div class="row text-secondary font-weight-bold" *ngIf = "certification.link"><a target="_blank" rel="noopener noreferrer" href="{{certification.link}}">{{certification.link}}</a></div>
 </div>
 <mat-divider class="pb-3 pt-3"></mat-divider>

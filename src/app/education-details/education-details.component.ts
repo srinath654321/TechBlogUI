@@ -35,14 +35,14 @@ export class EducationDetailsComponent implements OnInit {
         typeOfDegree: education.typeOfDegree,
         courseName: education.courseName,
         gpa: education.gpa,
-        stillStudying: education.stillStudying
+        stillStudying: education.isStillStudying
       }
     })
 
     dialogRef.afterClosed().subscribe((form : FormGroup) => {
       if (form != undefined) {
         this.eduEvent.emit(new EducationEvent(new Education(form.value.schoolName, form.value.yearStarted, form.value.yearEnded, form.value.typeOfDegree,
-        form.value.courseName, form.value.gpa, form.value.stillStudying), "EDIT", education));
+        form.value.courseName, form.value.gpa, form.value.isStillStudying), "EDIT", education));
       }
     })
 
