@@ -66,6 +66,11 @@ export class UserProfileComponent implements OnInit {
 
     this.userService.getUser().subscribe((data : User) => {
       console.log("user data", data)
+
+      if (data == null) {
+        this.router.navigate(['login']);
+      }
+      
       this.user = data;
       this.userId = data.userId;
       this.about = data.summary;

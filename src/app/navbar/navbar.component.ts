@@ -1,3 +1,5 @@
+import { AuthService } from 'angularx-social-login';
+import { AuthLocalService } from '../auth.local.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Router, Routes } from '@angular/router';
@@ -31,9 +33,11 @@ techBlogRoutes : ROUTE[] = [
     }
   ]
 
+  userName: string;
+
  techTools :string[] = ["SPRING", "HIBERNATE", "JACKSON", "DROPWIZARD", "MYSQL"]  
 
-  constructor(private router: Router, private matDialog: MatDialog) { }
+  constructor(private router: Router, private matDialog: MatDialog, private socialAuthService: AuthService) { }
 
   ngOnInit() {
   }
@@ -44,6 +48,8 @@ techBlogRoutes : ROUTE[] = [
     // sessionStorage.clear();
     // this.router.navigate(['login']);
   }
+
+ 
 
   onLogOutAlertCancel(){
     this.matDialgRef.close();
@@ -59,7 +65,18 @@ techBlogRoutes : ROUTE[] = [
     this.router.navigate(['login']);
   }
 
+  
+  signOut(): void {
+    this.socialAuthService.signOut(true);
+    sessionStorage.clear();
+    this.matDialgRef.close();
+    this.router.navigate(['login']);
+  }
+
   isUserLoggedIn() : boolean {
+    if (sessionStorage.userLoggedIn) {
+      this.userName = sessionStorage.getItem("firstName");
+    }
     return sessionStorage.userLoggedIn;
   }
 

@@ -5,6 +5,9 @@
             <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
           </button>
           <h1 class="example-app-name">TECHBLOG</h1>
+          <ng-container *ngIf = "isUserLoggedIn()">
+            <h1 class="username">Welcome {{ userName }}</h1>
+          </ng-container>
         </mat-toolbar-row>
     </mat-toolbar>
     <mat-sidenav-container class="example-sidenav-container">
@@ -63,7 +66,7 @@
     <p class="text-center text-warning font-weight-bold p-3">ARE YOU SURE YOU WANT TO LOGOUT ?</p>
     <mat-dialog-actions>
         <div class="row ml-auto mr-1 pt-3">
-            <button (click) = "onLogOutAlretOK()" mat-stroked-button>OK</button>
+            <button (click) = "signOut()" mat-stroked-button>OK</button>
             <button (click) = "onLogOutAlertCancel()" mat-stroked-button class="ml-3">CANCEL</button>
         </div>
     </mat-dialog-actions>

@@ -1,4 +1,4 @@
-<div class="login">
+<!-- <div class="login">
     <mat-card class="example-card">
             <mat-card-header>
                 <mat-card-title>Login</mat-card-title>
@@ -15,7 +15,7 @@
                     </mat-form-field>
                 </form>
             </mat-card-content>
-            <button class="btn btn-success" (click)="onLogin()" color="primary">
+            <button class="btn btn-success" (click)="onGoogleSignIn()" color="primary">
                     <span *ngIf = !loading>Login</span>
                     <span *ngIf = "loading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> LOGGING</span>
             </button>
@@ -29,4 +29,54 @@
                 </div>
             </div>
     </mat-card>
+</div> -->
+
+<!-- <section id="demo" class="demo-section">
+    <div class="jumbotron bg-transparent text-center">
+      <div *ngIf="!user" class="card text-center">
+        <h6 class="card-header">
+          Welcome to {{ title }}!
+        </h6>
+        <div class="card-block">
+          <h4 class="card-title">Not signed in</h4>
+          <p class="card-text">Sign in with</p>
+        </div>
+        <div class="card-block">
+          <button class="btn btn-google" (click)="onGoogleSignIn()">Google</button>
+        </div>
+      </div>
+      <div *ngIf="user" class="card text-center">
+        <h6 class="card-header">
+          Social Login Demo
+        </h6>
+        <div class="card-block"></div>
+        <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+        <div class="card-block">
+          <h4 class="card-title">{{ user.name }}</h4>
+          <p class="card-text">{{ user.email }}</p>
+        </div>
+        <div class="card-block">
+          <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+        </div>
+      </div>
+    </div>
+  
+  </section> -->
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-xl-4"></div>
+        <div class="col-xl-3">
+            <div class="card card-signin">
+                <div class="card-body">
+                    <div class="card-title text-center font-weight-bold">Sign In</div>
+                    <mat-divider></mat-divider>
+                    <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" (click)="onGoogleSignIn()">
+                        <i class="fab fa-google mr-2"></i>
+                        <span *ngIf = "!loading">Sign in with Google</span>
+                        <span *ngIf = "loading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> Signing!!</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -7,7 +7,6 @@ import { WorkExp } from './work-experience/WorKExp';
 import { Injectable } from '@angular/core';
 import { Education } from './education-details/Education';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UrlSegment } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +22,14 @@ export class UserService {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  } 
+  }
 
   getUser(): Observable<User> {
-    return this.httpClient.get<User>(this.url+"/srinath.kavuri", this.httpOptions);
+    console.log( "user name from auth servive ", sessionStorage.getItem("userId"));
+    console.log ("is user logged in ", sessionStorage.userLoggedIn)
+    if (sessionStorage.userLoggedIn) {
+      return this.httpClient.get<User>(this.url + "/" + sessionStorage.getItem("userId"), this.httpOptions);
+    }
   }
 
   saveUser(user: User):Observable<User> {

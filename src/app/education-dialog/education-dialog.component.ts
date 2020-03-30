@@ -48,7 +48,7 @@ export class EducationDialogComponent implements OnInit {
       if (this.data.yearEnded != undefined) {
         this.data.yearEnded = new Date(this.data.yearEnded);
       }
-      
+
       this.eduForm = this.fb.group({
         schoolName : [this.data.schoolName, [Validators.required]],
         yearStarted : [this.data.yearStarted],
@@ -64,9 +64,6 @@ export class EducationDialogComponent implements OnInit {
   
   this.typeOfDegrees = this.eduService.getTypeOfDegreeList();
 
- 
-
- 
 
   this.filteredDegreeOptions = this.eduForm.get('typeOfDegree').valueChanges
                                               .pipe(

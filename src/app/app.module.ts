@@ -29,6 +29,32 @@ import { SkillComponent } from './skill/skill.component';
 import { SkillDialogComponent } from './skill-dialog/skill-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactComponent } from './contact/contact.component';
+import {
+  SocialLoginModule, 
+  AuthServiceConfig,
+  GoogleLoginProvider,
+  LoginOpt, 
+} from 'angularx-social-login';
+
+const googleLoginOptions: LoginOpt = {
+  scope: 'profile email'
+}; // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2clientconfig
+
+/** 
+ * config takes two params
+ * 1. Provider config array
+ */
+const CONFIG = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('478012754672-1mse86h3na9846b26t9cm8mbp94j7cno.apps.googleusercontent.com',
+    googleLoginOptions)
+  }
+]);
+
+export function provideConfig() {
+  return CONFIG;
+}
 
 @NgModule({
   declarations: [
@@ -85,9 +111,13 @@ import { ContactComponent } from './contact/contact.component';
     HttpClientModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    SocialLoginModule
   ],
-  providers: [MatNativeDateModule, TruncatePipe],
+  providers: [ {
+    provide: AuthServiceConfig,
+    useFactory: provideConfig
+  }, MatNativeDateModule, TruncatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

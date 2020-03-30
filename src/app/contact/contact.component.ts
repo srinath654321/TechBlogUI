@@ -17,9 +17,31 @@ export class ContactComponent implements OnInit {
   @Output() contactEditEvent = new EventEmitter<ContactEditEvent>();
   sub: Subscription;
 
+  imageUrl : string;
+  email : string;
+  fullName : string;
+
   constructor(private matDialog: MatDialog) { }
 
   ngOnInit() {
+
+    this.imageUrl = sessionStorage.getItem("imageUrl");
+    this.email = sessionStorage.getItem("email");
+    this.fullName = sessionStorage.getItem("fullName");
+
+    if (this.contact.imageData == "") {
+      console.log ("image data is empty form server, using google image ", this.imageUrl)
+      this.contact.imageData = this.imageUrl;
+    }
+
+    if (this.contact.email == "") {
+      console.log ("email is empty form server, using google sign in email ", this.email);
+      this.contact.email = this.email;
+    }
+
+    if (this.contact.fullName == "") {
+      this.contact.fullName = this.fullName;
+    }
   }
 
   openContactEditDialog() {
@@ -37,7 +59,7 @@ export class ContactComponent implements OnInit {
 
     });
     
-    this.sub = dialogRef.afterClosed().subscribe((form: FormGroup) =>{
+    this.sub = dialogRef.afterClosed().subscribe((form: FormGroup) => {
       console.log("dialog after closed" , form);
       if(form != undefined) {
         console.log("saved form data ", form);
