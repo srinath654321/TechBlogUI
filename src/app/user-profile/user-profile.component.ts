@@ -1,3 +1,4 @@
+import { AuthService } from 'angularx-social-login';
 import { ContactEditEvent } from './../contact/ContactEditEvent';
 import { Contact } from './../contact/Contact';
 import { User } from './User';
@@ -31,7 +32,8 @@ import { Util } from './Util';
 export class UserProfileComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private matDialog: MatDialog, 
-  private router: Router, private userService: UserService, private util: Util) { }
+  private router: Router, private userService: UserService, private util: Util,
+  private socialAuthService: AuthService) { }
 
   contact: Contact;
   about: string;
@@ -68,7 +70,7 @@ export class UserProfileComponent implements OnInit {
       console.log("user data", data)
 
       if (data == null) {
-        this.router.navigate(['login']);
+        this.handleServerError()
       }
       
       this.user = data;
@@ -110,18 +112,22 @@ export class UserProfileComponent implements OnInit {
       console.log("edu", data.educationList);
     },
 
-    
-
     (err: HttpErrorResponse) => {
+      console.log("error ", err)
       if (err.error instanceof Error) {
         console.log("client side error");
       }else {
-        console.log("server side error");
+        alert("bakend server is down, please log in again")
+        this.handleServerError()
       }
-    }
-    
-    
-    )
+    })
+  }
+
+  handleServerError() {
+    console.log("server side error");
+    this.socialAuthService.signOut(true);
+    sessionStorage.clear();
+    this.router.navigate(['login']);
   }
 
   fireContactEditEvent(contactEditEvent: ContactEditEvent) {
@@ -144,10 +150,7 @@ export class UserProfileComponent implements OnInit {
       }else {
         console.log("server side error");
       }
-    }
-
-    
-    );
+    });
   }
 
   openAboutEditDialog() {
@@ -291,7 +294,7 @@ export class UserProfileComponent implements OnInit {
   openSkillAddDialog() {
     const dialogRef = this.matDialog.open(SkillDialogComponent, {
       width: '800px',
-      height: '400px',
+      height: '450px',
     })
 
     dialogRef.afterClosed().subscribe((form: FormGroup) => {
@@ -314,7 +317,7 @@ export class UserProfileComponent implements OnInit {
   openWorkExpAddDialog() {
     const dialogRef = this.matDialog.open(WorkExpAddDialogComponent, {
       width: '900px',
-      height: '800px',
+      height: '850px',
     })
 
     dialogRef.afterClosed().subscribe((form: FormGroup) => {
@@ -338,14 +341,14 @@ export class UserProfileComponent implements OnInit {
   openEducationAddDialog() {
     const dialogRef  = this.matDialog.open(EducationDialogComponent, {
       width: '800px',
-      height: '500px'
+      height: '550px'
     })
 
     dialogRef.afterClosed().subscribe((form : FormGroup) => {
 
       if ( form != undefined) {
         let education = new Education (form.value.schoolName, form.value.yearStarted, form.value.yearEnded, form.value.typeOfDegree,
-          form.value.courseName, form.value.gpa, form.value.stillStudying);
+          form.value.courseName, form.value.gpa, form.value.isStillStudying);
           this.saveEducation(education, this.educationArray, undefined, false);
       }
 
@@ -357,7 +360,7 @@ export class UserProfileComponent implements OnInit {
     console.log(this.certificationArray);
     const dialogRef = this.matDialog.open(CertificationDialogComponent, {
       width: '800px',
-      height: '500px'
+      height: '550px'
     })
 
     dialogRef.afterClosed().subscribe((form: FormGroup) =>{
@@ -537,6 +540,7 @@ export class UserProfileComponent implements OnInit {
       if (err.error instanceof Error) {
         console.log("client side error");
       }else {
+        console.log(err.error);
         console.log("server side error");
       }
     }

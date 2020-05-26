@@ -25,10 +25,7 @@ export class LoginComponent implements OnInit {
   loggedIn : boolean;  
 
   ngOnInit() {
-    this.sub = this.route.queryParams.subscribe(
-      (params) =>{
-        this.reDirectUrl = params['reDirectUrl'];
-      });
+    this.route.snapshot.queryParamMap.get('returnurl')
     console.log(this.route.queryParams)
     console.log("redirect url ", this.reDirectUrl)
 
@@ -52,14 +49,10 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("imageUrl", this.user.photoUrl);
         sessionStorage.setItem("email", this.user.email);
         sessionStorage.setItem("fullName", this.user.name);
-        sessionStorage.setItem
         sessionStorage.userLoggedIn = true;
-        console.log("return url ", this.reDirectUrl)
-        if(this.reDirectUrl ==  undefined) {
-          this.router.navigateByUrl('/profile');
-        }else{
-          this.router.navigateByUrl(this.reDirectUrl);
-        }
+
+        let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        this.router.navigate([returnUrl || 'java'])
       } else {
         this.loading = false;
       }
@@ -67,26 +60,6 @@ export class LoginComponent implements OnInit {
       alert(err);
       this.loading = false;
     })
-  }
-
-  onLogin(){
-    this.loading = true;
-    if (this.authService.isUserLoggedIn(this.userName, this.password)) {
-      console.log("logged in user ", this.userName, this.password)
-      this.loading = false;
-      sessionStorage.userLoggedIn = true;
-      sessionStorage.setItem("userName", this.userName);
-      console.log("return url ", this.reDirectUrl)
-      if(this.reDirectUrl ==  undefined) {
-        this.router.navigateByUrl('/profile');
-      }else{
-        this.router.navigateByUrl(this.reDirectUrl);
-      }
-    }else{
-      this.loading = false;
-      this.isInValidUser = true;
-    }
-
   }
 
   onRegister(){

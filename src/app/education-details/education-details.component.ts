@@ -27,7 +27,7 @@ export class EducationDetailsComponent implements OnInit {
 
     const dialogRef = this.matDialog.open(EducationDialogComponent, {
       width: '800px',
-      height: '500px',
+      height: '550px',
       data: {
         schoolName: education.schoolName,
         yearStarted: education.yearStarted,
@@ -35,7 +35,7 @@ export class EducationDetailsComponent implements OnInit {
         typeOfDegree: education.typeOfDegree,
         courseName: education.courseName,
         gpa: education.gpa,
-        stillStudying: education.isStillStudying
+        isStillStudying: education.isStillStudying
       }
     })
 
@@ -64,7 +64,7 @@ export class EducationDetailsComponent implements OnInit {
         this.eduEvent.emit(new EducationEvent(education, "DELETE", undefined));
       }
 
-      if(result == "discard") {
+      if (result == "discard") {
         console.log("I am deleting the edu detail !!!!")
       }
     })

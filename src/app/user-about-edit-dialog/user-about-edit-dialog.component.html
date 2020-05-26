@@ -7,7 +7,7 @@
     <div mat-dialog-content >
         <form [formGroup] = "aboutForm">
             <div class="row ml-1 mr-1">
-                <mat-form-field class="full-width">
+                <mat-form-field class="full-width" appearance="fill">
                     <mat-label>About</mat-label>
                     <textarea matInput  #input max-length = "500" formControlName= "about" class="form-field__textarea"></textarea>
                     <mat-hint align = "left">Max 500 chars only</mat-hint>

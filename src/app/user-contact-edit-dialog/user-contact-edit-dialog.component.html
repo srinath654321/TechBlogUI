@@ -15,14 +15,14 @@
                 <div class="ml-5">
                     <input type="file" style="display:none" #pickFile (change) = "onFileChoose($event)" accept="image/*">
                     <p> <ng-container *ngIf = "fileName">{{fileName}}</ng-container> </p>
-                    <button mat-button (click)="pickFile.click()">Pick File</button>
+                    <button mat-button (click)="pickFile.click()"><strong>Choose File</strong></button>
                     <!-- <button *ngIf = "fileName" mat-button>Upload</button> -->
                 </div>
         </div>
         <form [formGroup] = "profileForm">
             <div class="row">
                 <div class ="col-md-6">
-                    <mat-form-field class="full-width">
+                    <mat-form-field class="full-width" appearance="fill">
                         <input matInput formControlName= "fullName" placeholder="FullName">
                         <mat-error *ngIf = "fullName.invalid">
                             Please Enter Full Name
@@ -30,7 +30,7 @@
                     </mat-form-field>
                 </div>
                 <div class="col-md-6">
-                    <mat-form-field class="full-width">
+                    <mat-form-field class="full-width" appearance="fill">
                         <input matInput formControlName= "email" placeholder="Email">
                         <mat-error *ngIf = "email.invalid">
                             Please enter valid email
@@ -40,7 +40,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <mat-form-field class="full-width">
+                    <mat-form-field class="full-width" appearance="fill">
                         <input matInput formControlName = "role" placeholder="Role">
                         <!-- <mat-select formControlName= "role" placeholder = "Role">
                             <mat-option value="Developer">DEVELOPER</mat-option>
@@ -53,16 +53,16 @@
                     </mat-form-field>
                 </div>
                 <div class="col-md-6">
-                    <mat-form-field class="full-width">
+                    <mat-form-field class="full-width" appearance="fill">
                         <input matInput formControlName= "phoneNumber" placeholder="phoneNumber">
-                    </mat-form-field>
-                    <mat-error *ngIf = "phoneNumber.invalid">
+                        <mat-error *ngIf = "phoneNumber.invalid">
                             Please enter valid phone number
-                    </mat-error>
+                        </mat-error>
+                    </mat-form-field>
                 </div>
             </div>
             <div class="row ml-auto">
-                <mat-form-field class="full-width">
+                <mat-form-field class="full-width" appearance="fill">
                     <input matInput formControlName= "address" placeholder="Address">
                     <mat-error *ngIf = "address.invalid">
                             Please enter valid address

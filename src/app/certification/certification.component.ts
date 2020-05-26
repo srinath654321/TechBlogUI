@@ -46,10 +46,9 @@ export class CertificationComponent implements OnInit {
   }
 
   openCertificationEditDialog(certification: Certification) {
-
     const dialogRef = this.matDialog.open(CertificationDialogComponent, {
       width:'800px',
-      height:'500px',
+      height:'550px',
       data: {
         name: certification.name,
         yearIssued: certification.yearIssued,
@@ -60,7 +59,6 @@ export class CertificationComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe((form: FormGroup) => {
-
       if (form != undefined) {
         console.log("edited certificate form", form)
         if (form.value.isNeverExpires == true) {

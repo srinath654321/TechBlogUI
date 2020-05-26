@@ -16,12 +16,12 @@ export class AlertDialogComponent implements OnInit {
     console.log("alert lable data", this.data)
     if (this.data.deleteLabel != undefined) {
       this.alertText = "Are you sure do you want to delete " + this.data.deleteLabel + " ?";
-    }else if(this.data.closeAlert ! = undefined) {
+    } else if (this.data.closeAlert ! = undefined) {
       this.alertText = "Your changes will not be saved Are you sure you want to close ?";
       console.log(this.alertText)
-    }else if(this.data.cancelAlert != undefined) {
+    } else if (this.data.cancelAlert != undefined) {
       this.alertText = "You changes will not be saved Are you sure you want to cancel ?";
-    }else{
+    } else {
       this.alertText = "Are you sure you want to exit your changes will not be saved";
     }
   }

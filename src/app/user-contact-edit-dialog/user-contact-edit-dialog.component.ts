@@ -18,6 +18,8 @@ export class UserContactEditDialogComponent implements OnInit {
 
   ngOnInit() {
 
+    let string = 'hello';
+
     console.log('userEditData ', this.data);
 
     this.profileForm = this.fb.group({

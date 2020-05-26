@@ -1,9 +1,17 @@
 .full-width{
     width: 100%;
+    background-color: transparent;
+    color: black;
+    border: none;
 }
 
-.title{
+.title {
     border-bottom: 2px solid darkgray;
     margin-left: 0;
     margin-right: 0;
+}
+
+.bg {
+    border: none;
+    background-color:rgb(241, 243, 244);
 }

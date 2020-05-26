@@ -70,7 +70,7 @@ export class WorkExperienceComponent implements OnInit, OnDestroy{
     console.log("work exp in edit ", workExperience)
     const dialogRef = this.matDialog.open(WorkExpAddDialogComponent, {
         width: '900px',
-        height: '800px',
+        height: '850px',
         data : {
           role: workExperience.role,
           companyName: workExperience.companyName,

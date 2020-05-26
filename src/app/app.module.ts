@@ -7,7 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatIconModule, MatSnackBarModule, MatProgressBarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatIconModule, MatSnackBarModule, MatProgressBarModule, MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { JavaComponent } from './java/java.component';
 import { SqlComponent } from './sql/sql.component';
@@ -82,6 +82,7 @@ export function provideConfig() {
     SkillDialogComponent,
     ContactComponent,
   ],
+  
   entryComponents: [AlertDialogComponent, EducationDialogComponent, UserContactEditDialogComponent, 
     WorkExpAddDialogComponent,SkillDialogComponent, CertificationDialogComponent, 
     UserAboutEditDialogComponent, RegisterComponent, LoginAlertComponent, NavbarComponent],
@@ -112,12 +113,21 @@ export function provideConfig() {
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    SocialLoginModule
+    SocialLoginModule,
+    MatRadioModule
   ],
-  providers: [ {
+  providers: [ 
+  {
     provide: AuthServiceConfig,
     useFactory: provideConfig
-  }, MatNativeDateModule, TruncatePipe],
+  }, 
+  MatNativeDateModule, 
+  TruncatePipe,
+  {
+    provide: MAT_RADIO_DEFAULT_OPTIONS,
+    useValue: { color: 'primary' }
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

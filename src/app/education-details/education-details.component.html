@@ -4,8 +4,8 @@
         <i class="material-icons ml-auto mr-2 cross-button"  (click) = "openEducationEditDialog(education)">edit</i>
         <i class="material-icons mr-2 cross-button"  (click) = "removeEducation(education)">delete_outline</i>
     </div>
-    <div class="row text-primary font-weight-bold">{{education.schoolName}}</div>
-    <ng-container  *ngIf = "education.yearStarted && !education.isStillStudying">
+    <div class="row text-primary font-weight-bold">{{education.schoolName | uppercase}}</div>
+    <ng-container *ngIf = "education.yearStarted && !education.isStillStudying">
         <div class="row text-secondary font-weight-bold">{{ education.yearStarted | date : 'shortDate' }} - {{ education.yearEnded | date : 'shortDate' }}</div>
     </ng-container>
     <ng-container *ngIf = "education.yearStarted && education.isStillStudying">

@@ -25,7 +25,8 @@ export class SkillComponent implements OnInit {
 
     const dialogRef = this.matDialog.open(SkillDialogComponent, {
       width: '800px',
-      height: '400px',
+      height: '450px',
+      panelClass : 'custom-dialog',
       data:{
         name: skillExp.name,
         experience: skillExp.experience
@@ -45,8 +46,8 @@ export class SkillComponent implements OnInit {
     if (skillExp != undefined) {
       const dialogRef = this.matDialog.open(AlertDialogComponent, {
         data: {
-          label: "Skill"
-        }
+          deleteLabel: "Skill"
+        },
       })
 
       dialogRef.afterClosed().subscribe(result => {

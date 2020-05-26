@@ -7,34 +7,33 @@
 <div mat-dialog-content >
     <form [formGroup] = "eduForm">
         <div class="row ml-1 mr-1 pb-1">
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="fill">
                 <mat-label>SchoolName</mat-label>
                 <input matInput (keyup)= "schoolNameKeyUp($event.target.value)" formControlName = "schoolName" [matAutocomplete] = "schoolNameAuto">
             </mat-form-field>
             <mat-autocomplete #schoolNameAuto = "matAutocomplete">
                 <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
                 <ng-container *ngIf = "!isLoading">
-                        <mat-option *ngFor = "let option of filteredUnivsOptions" [value] = "option"> {{option}} </mat-option>
-                </ng-container>
-    
+                    <mat-option *ngFor = "let option of filteredUnivsOptions$ | async" [value] = "option"> {{option}} </mat-option>
+                </ng-container>  
             </mat-autocomplete>
         </div>
         <div class="row pb-1">
             <div class="col-md-6">
-                <mat-form-field class="full-width">
-                        <mat-label>YearStarted</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName = "yearStarted">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>YearStarted</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName = "yearStarted">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
             </div>
             <div *ngIf = "!eduForm.get('isStillStudying').value" class="col-md-6">
-                    <mat-form-field class="full-width">
-                            <mat-label>YearEnded</mat-label>
-                            <input matInput [matDatepicker]="picker" formControlName = "yearEnded">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>YearEnded</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName = "yearEnded">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
             </div>
         </div>
         <div class="row ml-1 mr-1 pb-1">
@@ -42,7 +41,7 @@
         </div>
         <div class="row pb-1">
             <div class="col-6">
-                <mat-form-field class="full-width">
+                <mat-form-field class="full-width" appearance="fill">
                     <mat-label>TypeOfDegree</mat-label>
                     <input matInput formControlName = "typeOfDegree" [matAutocomplete] = "degreeTypeAuto">
                 </mat-form-field>
@@ -51,7 +50,7 @@
                 <mat-option *ngFor = "let typeOfDegree of filteredDegreeOptions | async" [value] = "typeOfDegree">{{typeOfDegree}}</mat-option>
             </mat-autocomplete>
             <div class="col-6">
-                <mat-form-field class="full-width">
+                <mat-form-field class="full-width" appearance="fill">
                         <mat-label>Course</mat-label>
                         <input matInput formControlName = "courseName">
                 </mat-form-field>

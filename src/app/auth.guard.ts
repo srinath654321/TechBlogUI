@@ -9,38 +9,27 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 })
 export class AuthGuard implements CanActivate {
 
-  reDirectUrl: string;
-
   constructor(private authService: AuthLocalService, private router: Router, private matDialog: MatDialog){
 
   }
   
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    console.log("entering in to guard")
-    this.reDirectUrl = route['_routerState']['url'];
-    console.log("redirect url in guard", this.reDirectUrl)
 
-    if(this.authService.isSessionAlive()) {
+    if (this.authService.isSessionAlive()) {
       return true;
     }
 
-    this.matDialog.open(LoginAlertComponent, {
-      width : '400px',
-      height: '200px',
-      data:{
-        reDirectUrl: this.reDirectUrl
-      }
-    })
+    this.router.navigate(['login'], {queryParams : {
+      returnUrl : state.url
+    }})
 
-    // this.router.navigateByUrl(
-    //   this.router.createUrlTree(
-    //     ['/login'],{
-    //       queryParams:{
-    //         reDirectUrl
-    //       }
-    //     }
-    //   )
-    // );
+    // this.matDialog.open(LoginAlertComponent, {
+    //   width : '400px',
+    //   height: '200px',
+    //   data:{
+    //     reDirectUrl: state.url
+    //   }
+    // })
 
     return false;
   }

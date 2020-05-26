@@ -19,7 +19,7 @@ export class LoginAlertComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onClickLogin(){
+  onClickLogin() {
     const reDirectUrl = this.data.reDirectUrl;
     console.log("reDirectUrl in login alert comp" , reDirectUrl)
       this.router.navigateByUrl(

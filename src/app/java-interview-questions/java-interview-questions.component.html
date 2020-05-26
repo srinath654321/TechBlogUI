@@ -100,4 +100,70 @@
             </div>
             <div class="col-xl-2"></div>
     </div>
+    <div class="row mt-5">
+        <div class="col-xl-2"></div>
+        <div class="col-xl-8">
+            <div class="card mb-3 p-3 text-center bg-info text-white font-weight-bolder mat-elevation-z8"><h1>TEST YOUR JAVA SKILLS</h1></div>
+            <ng-container *ngIf = "interViewQuestionArray && !issubmitted; else elsetemplate">
+                <div class="card rounded bg-light mat-elevation-z8 mb-4">
+                    <div class="ml-3 mt-3 card-title font-weight-bolder question">{{questionTracker + 1}}<span>) </span>{{firstQuestion.question}} ?</div>
+                    <div class="card-text">
+                        <mat-radio-group class="radio-group" [(ngModel)]="selectedOption">
+                            <mat-radio-button class="radio-button text-secondary ml-3" *ngFor = "let option of firstQuestion.options"
+                            [value]="option">{{option}}</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <div class="clearfix m-2">
+                            <ng-container *ngIf = "questionTracker != 0">
+                                <button mat-stroked-button class = "float-left ml-2" (click) = "onQuestionBack()">Back</button>
+                            </ng-container>
+                        <ng-container *ngIf = "numberOfQuestions != questionTracker + 1; else submit">
+                            <button mat-stroked-button class="mr-2 float-right" (click) = "onNext()">NEXT</button>
+                        </ng-container>
+                        <ng-template #submit>
+                            <button class="mr-2 float-right" (click) = "onsubmit()" mat-stroked-button>SUBMIT</button>
+                        </ng-template>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #elsetemplate>
+                <ng-container *ngIf = "issubmitted; else serverError">
+                    <div class="card rounded mat-elevation-z4">
+                        <div class="card-title bg-primary text-white p-3">
+                            <div class="row">
+                                <div class="col-xl-6 font-weight-bolder">Question</div>
+                                <div class="col-xl-2 font-weight-bolder">Your Answer</div>
+                                <div class="col-xl-2 font-weight-bolder">Correct Answer</div>
+                                <div class="col-xl-2 font-weight-bolder">ISVALID</div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div *ngFor = "let qaReport of questionAnswerReport; let i = index">
+                                <div class="row mb-3">
+                                    <div class="col-xl-6 font-weight-bolder"><span>{{i}}) </span>{{qaReport.question}} ?</div>
+                                    <div class="col-xl-2 text-info font-weight-bolder">{{qaReport.userAnswer}}</div>
+                                    <div class="col-xl-2 text-info font-weight-bolder">{{qaReport.questionAnswer}}</div>
+                                    <div class="col-xl-2">
+                                        <ng-container *ngIf = "qaReport.isvalid; else invalid">
+                                            <div class="text-success font-weight-bolder">CORRECT</div>
+                                        </ng-container>
+                                        <ng-template #invalid>
+                                            <div class="text-danger font-weight-bolder">INCORRECT</div>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                                <mat-divider *ngIf = "i != questionAnswerReport.length-1" class="mt-3"></mat-divider>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+            <ng-template #serverError>
+                <div class="card">
+                    <div class="p-3 card-text bg-warning text-center font-weight-bolder text-white mat-elevation-z8">SERVER IS DOWN PLEAE CONTACT ADMIN</div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
 </div>

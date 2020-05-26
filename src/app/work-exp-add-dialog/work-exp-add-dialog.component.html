@@ -7,28 +7,28 @@
 <div mat-dialog-content>
     <form [formGroup] = "workExpForm">
         <div class="row ml-1 mr-1 pb-1">
-                <mat-form-field class="full-width">
+                <mat-form-field class="full-width" appearance="fill">
                     <mat-label>Role</mat-label>
                     <input matInput formControlName = "role">
                     <mat-error *ngIf = "role.invalid"> Please Enter Your Role</mat-error>
                 </mat-form-field>
         </div>
         <div class="row ml-1 mr-1 pb-1">
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Company</mat-label>
                 <input matInput formControlName = "companyName">
                 <mat-error *ngIf = "companyName.invalid"> Please Enter Company Name</mat-error>
             </mat-form-field>
         </div>
         <div class="row ml-1 mr-1 pb-1">
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="fill">
                 <mat-label>Location</mat-label>
                 <input matInput formControlName = "location">
             </mat-form-field>
         </div>
         <div class="row pb-1">
             <div class="col-md-6">
-                <mat-form-field class="full-width">
+                <mat-form-field class="full-width" appearance="fill">
                         <mat-label>YearStarted</mat-label>
                         <input matInput [matDatepicker]="picker" formControlName = "yearStarted">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -36,7 +36,7 @@
                 </mat-form-field>
             </div>
             <div *ngIf = "!workExpForm.get('isStillWorking').value" class="col-md-6">
-                    <mat-form-field class="full-width">
+                    <mat-form-field class="full-width" appearance="fill">
                             <mat-label>YearEnded</mat-label>
                             <input matInput [matDatepicker]="picker" formControlName = "yearEnded">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -48,7 +48,7 @@
             <mat-checkbox  formControlName = "isStillWorking">StillWorkingHere</mat-checkbox>
         </div>
         <div class="row ml-1 mr-1 pb-1">
-            <mat-form-field class="full-width">
+            <mat-form-field class="full-width" appearance="fill"> 
                 <mat-label>Responsibilities</mat-label>
                 <textarea matInput  #input max-length = "500" formControlName= "responsibilities" class="form-field__textarea"></textarea>
             </mat-form-field>

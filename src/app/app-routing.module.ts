@@ -47,7 +47,11 @@ const routes: Routes = [
   {
     path: '**',
     component: LoginComponent
-  }
+  },
+  { 
+    path: 'blog', 
+    loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) 
+ }
 ]
 
 @NgModule({

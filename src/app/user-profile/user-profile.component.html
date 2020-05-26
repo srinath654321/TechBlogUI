@@ -1,32 +1,22 @@
 <div class = "row mt-5">
     <div class="col-xl-2">
-        <section>
-            <!-- <div class="card mat-elevation-z8 mb-4">
-                <div class="card-body">
-                    <h2 class="text-center text-info font-weight-bold p-3">Profile Views</h2>
-                    <mat-divider></mat-divider>
-                    <div class="text-center text-secondary font-weight-bold p-3"><h3>10</h3></div>
-                    <mat-divider></mat-divider>
-                    <h2 class="text-center text-info font-weight-bold p-3">Profile Rating</h2>
-                    <mat-divider></mat-divider>
-                    <div class=""></div>
-                </div>
-            </div> -->
-        </section>
     </div>
+
     <div class="col-xl-8">
+        
         <section id="about">
             <mat-progress-bar mode={{summaryMode}}></mat-progress-bar>
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openAboutEditDialog()">edit</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">
-                    <h4>About</h4>
+                    <h4 class="text-info font-weight-bolder">About</h4>
                 </div>
                 <div class="card-body">
                     <p class="text-secondary font-weight-bolder">{{about}}</p>
                 </div>
             </div>
         </section>
+
         <section id="contact" *ngIf = "contact">
             <mat-progress-bar mode={{contactMode}}></mat-progress-bar>
             <contact [contact] = "contact" (contactEditEvent) = "fireContactEditEvent($event)"></contact>
@@ -37,7 +27,7 @@
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openSkillAddDialog()">add</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">
-                    <h4>Skills</h4>
+                    <h4 class="text-info font-weight-bolder">Skills</h4>
                 </div>
                 <div class="card-body">
                     <skill *ngFor = "let skillExp of skillExpArray" [skillExp]= "skillExp" (skillExpEvent) = "fireSkillExpEvent($event)">
@@ -51,7 +41,7 @@
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openCertificationsAddDialog()">add</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">
-                    <h4>Certifications</h4>
+                    <h4 class="text-info font-weight-bolder">Certifications</h4>
                 </div>
                 <div class="card-body">
                     <certification *ngFor = "let certification of certificationArray"  [certification]= "certification" (certificationEvent) = "fireCertificationEvent($event)"
@@ -65,7 +55,7 @@
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openWorkExpAddDialog()">add</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">
-                    <h4>WorkExperience</h4>
+                    <h4 class="text-info font-weight-bolder">WorkExperience</h4>
                 </div>
                 <div class="card-body">
                     <work-experience *ngFor = "let workExp of workExpArray" [workExp] = "workExp" (workExpEvent) = fireWorkExpEvent($event)
@@ -79,7 +69,7 @@
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openEducationAddDialog()">add</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">
-                    <h4>Education</h4>
+                    <h4 class="text-info font-weight-bolder">Education</h4>
                 </div>
                 <div class="card-body">
                     <education-details 

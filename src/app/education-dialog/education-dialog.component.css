@@ -1,8 +1,8 @@
-.full-width{
+.full-width {
     width: 100%;
 }
 
-.title{
+.title {
     border-bottom: 2px solid darkgray;
     margin-left: 0;
     margin-right: 0;
@@ -11,4 +11,4 @@
 .is-loading ::ng-deep .mat-option-text {
     display: flex;
     justify-content: center;
-  }
+}

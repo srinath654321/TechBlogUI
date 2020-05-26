@@ -1,37 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
  @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; 
 
-.mat-stroked-button:hover{
+.mat-stroked-button:hover {
     background: #673ab7 !important;
     color: white;
     font-weight: 400;
 }
 
-.mat-stroked-button{
+.mat-stroked-button {
     color: #673ab7;
     font-weight: 400;
     background: transparent;
 }
 
-.mat-button:hover{
+.mat-button:hover {
     background: #673ab7 !important;
     color: white;
     font-weight: bolder;
 }
 
-.mat-raised-button{
+.mat-raised-button {
     color: white;
     font-weight: 400;
     background: transparent;
+    border: 3px solid green;
 }
 
-.mat-raised-button:hover{
+.mat-raised-button:hover {
     background: #673ab7 !important;
     color: white;
     font-weight: 400;
 }
 
-.page-header{
+.page-header {
     background-color: darkgray;
     color: white;
     font-weight: bold;
@@ -41,24 +42,24 @@
     margin-top: 20px;
 } 
 
-html, body{
+html, body {
     height: 100%;
     margin: 0;
 } 
 
-body{
+body {
     font-family: Roboto,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
 
-.form-width{
+.form-width {
     width: 100%;
 }
 
-.header-color{
+.header-color {
     color: #673ab7;
 }
 
-.site-color{
+.site-color {
     color: #673ab7;
 }
 
@@ -66,13 +67,19 @@ textarea.cdk-textarea-autosize-measuring {
     padding: 4px 0 !important;
 }
 
-.cross-button:hover{
+.cross-button:hover {
     border-radius: 3px;
     background-color: #673ab7;
     cursor: pointer;
 }
 
-.mat-drawer-inner-container{
+.mat-drawer-inner-container {
     overflow-x: hidden !important;
     padding-left: 15px;
+}
+
+.custom-dialog .mat-dialog-container {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
 }
