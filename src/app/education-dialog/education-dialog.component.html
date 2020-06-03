@@ -14,7 +14,7 @@
             <mat-autocomplete #schoolNameAuto = "matAutocomplete">
                 <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
                 <ng-container *ngIf = "!isLoading">
-                    <mat-option *ngFor = "let option of filteredUnivsOptions$ | async" [value] = "option"> {{option}} </mat-option>
+                    <mat-option *ngFor = "let option of filteredUnivsOptions" [value] = "option"> {{option}} </mat-option>
                 </ng-container>  
             </mat-autocomplete>
         </div>

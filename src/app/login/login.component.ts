@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.userLoggedIn = true;
 
         let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
-        this.router.navigate([returnUrl || 'java'])
+        this.router.navigate([returnUrl || 'profile'])
       } else {
         this.loading = false;
       }

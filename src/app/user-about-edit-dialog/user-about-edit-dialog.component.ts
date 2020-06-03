@@ -18,9 +18,7 @@ export class UserAboutEditDialogComponent implements OnInit {
   ngOnInit() {
     console.log("dialog data ", this.data.about)
     this.aboutForm = this.fb.group({
-      about: [this.data.about, [
-        Validators.maxLength(500)
-      ]]
+      about: [this.data.about]
     });
   }
 

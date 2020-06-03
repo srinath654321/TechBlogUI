@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Observable} from 'rxjs';
 import {map, startWith, debounceTime, tap} from 'rxjs/operators';
+import { strict } from 'assert';
 
 @Component({
   selector: 'app-education-dialog',
@@ -19,7 +20,7 @@ export class EducationDialogComponent implements OnInit {
 
   filteredDegreeOptions: Observable<string[]>;
 
-  filteredUnivsOptions$;
+  filteredUnivsOptions: Array<String>;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<EducationDialogComponent>, 
     private eduService: EducationDetailsService, @Inject (MAT_DIALOG_DATA) private data: any, private matDialog: MatDialog) { }
@@ -68,17 +69,18 @@ export class EducationDialogComponent implements OnInit {
                                                 map(value => this.degree_filter(value))
                                               )
 
-   
-
-
 }
 
 schoolNameKeyUp(value: string) {
   this.isLoading = true;
   if (value.length > 4 && value != undefined) {
     console.log("matcher value ", value);
-    this.filteredUnivsOptions$ = this.eduService.getMatchedUnivsData(value);
-    this.isLoading = false;
+  this.eduService
+    .getMatchedUnivsData(value).subscribe((data:String[]) => {
+      this.filteredUnivsOptions = data;
+      this.isLoading = false;
+    }
+    )
   } else {
     this.isLoading = false;
   }

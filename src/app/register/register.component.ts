@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
   password: string;
   confirmPassword: string;
 
-  @ViewChild('registrationResponse', {static: false})registrationResponse: TemplateRef<any>;
+  @ViewChild('registrationResponse')registrationResponse: TemplateRef<any>;
 
   constructor(private fb: FormBuilder, private router: Router, private matDialog: MatDialog) { }
 

@@ -8,13 +8,10 @@
         <form [formGroup] = "aboutForm">
             <div class="row ml-1 mr-1">
                 <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>About</mat-label>
-                    <textarea matInput  #input max-length = "500" formControlName= "about" class="form-field__textarea"></textarea>
-                    <mat-hint align = "left">Max 500 chars only</mat-hint>
-                    <mat-hint align= "end">{{input.value?.length || 0}}/500</mat-hint>
-                    <mat-error *ngIf = "about.invalid">
-                        About should be of 500 chars only
-                    </mat-error>
+                    <mat-label>Summary</mat-label>
+                    <textarea matInput required #input formControlName= "about" class="form-field-textarea">
+                    </textarea>
+                    <mat-error>Summary should not be empty</mat-error>
                 </mat-form-field>
             </div>
         </form>

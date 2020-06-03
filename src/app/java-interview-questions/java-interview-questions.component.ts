@@ -38,6 +38,10 @@ export class JavaInterviewQuestionsComponent implements OnInit {
 
   constructor(private router: Router, private eduservice: EducationDetailsService) {}
 
+  shareInterviewQuestion() {
+    this.router.navigate(['shareInterviewQuestion'], { queryParams : {topic: 'java'}})
+  }
+
   ngOnInit() {
     this.eduservice.getQuestions().subscribe((data:any) => {
       console.log(data)

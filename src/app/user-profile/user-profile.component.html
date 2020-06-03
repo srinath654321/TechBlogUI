@@ -9,10 +9,19 @@
             <div class="card stretch-card mb-4 mat-elevation-z8">
                 <i class="material-icons ml-auto mr-3 mt-3 cross-button"  (click) = "openAboutEditDialog()">edit</i>
                 <div class="d-flex flex-row card-title ml-3 mr-3">
-                    <h4 class="text-info font-weight-bolder">About</h4>
+                    <h4 class="text-info font-weight-bolder">Summary</h4>
                 </div>
                 <div class="card-body">
-                    <p class="text-secondary font-weight-bolder">{{about}}</p>
+                    <ng-container *ngIf = "truncatedSummary.length > 0; else nontruncatedSummary">
+                        <pre class="formatted text-secondary font-weight-bolder certify">{{showSummary}}</pre>
+                        <a *ngIf = "!showButton" (click)= "readMore()" class="text-info font-weight-bold">ReadMore</a>
+                        <a *ngIf = "showButton" (click)= "readLess()" class="text-info font-weight-bold">ReadLess</a>
+                    </ng-container>
+                    <ng-template #nontruncatedSummary>
+                        <ng-container *ngIf = "about.length > 0">
+                            <pre class="formatted text-secondary font-weight-bolder certify">{{about}}</pre>
+                        </ng-container>
+                    </ng-template>
                 </div>
             </div>
         </section>

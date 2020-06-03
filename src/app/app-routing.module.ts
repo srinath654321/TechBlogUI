@@ -1,15 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { JavaInterviewQuestionsComponent } from './java-interview-questions/java-interview-questions.component';
-import { JavaComponent } from './java/java.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SqlComponent } from './sql/sql.component';
 import { RegisterComponent } from './register/register.component';
-import { ShareJavaInterviewQuestionComponent } from './share-java-interview-question/share-java-interview-question.component';
+import { ShareInterviewQuestionComponent } from './share-interview-question/share-interview-question.component';
 import { CommonModule } from '@angular/common';
+import { TopicComponent } from './topic/topic.component';
 
 
 const routes: Routes = [
@@ -25,24 +24,21 @@ const routes: Routes = [
   },
 
   {
+    path: 'topic',
+    component: TopicComponent
+  },
+
+  {
     path: 'register',
     component: RegisterComponent
-  },
-  {
-    path: 'java',
-    component:JavaComponent
   },
   {
     path: 'java/javaInterviewQuestions',
     component: JavaInterviewQuestionsComponent
   },
   {
-    path : 'java/shareJavaInterviewQuestion',
-    component: ShareJavaInterviewQuestionComponent
-  },
-  {
-    path: 'sql',
-    component: SqlComponent
+    path : 'shareInterviewQuestion',
+    component: ShareInterviewQuestionComponent
   },
   {
     path: '**',

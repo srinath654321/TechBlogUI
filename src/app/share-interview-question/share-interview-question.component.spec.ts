@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShareJavaInterviewQuestionComponent } from './share-java-interview-question.component';
+import { ShareInterviewQuestionComponent } from './share-interview-question.component';
 
 describe('ShareJavaInterviewQuestionComponent', () => {
-  let component: ShareJavaInterviewQuestionComponent;
-  let fixture: ComponentFixture<ShareJavaInterviewQuestionComponent>;
+  let component: ShareInterviewQuestionComponent;
+  let fixture: ComponentFixture<ShareInterviewQuestionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShareJavaInterviewQuestionComponent ]
+      declarations: [ ShareInterviewQuestionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShareJavaInterviewQuestionComponent);
+    fixture = TestBed.createComponent(ShareInterviewQuestionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

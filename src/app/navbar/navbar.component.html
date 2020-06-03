@@ -21,8 +21,7 @@
 
           <a *ngFor = "let techBlogRoute of techBlogRoutes"
           mat-list-item
-          (click) = "sidenav.close()"
-          [routerLink] = "[techBlogRoute.route]"
+          (click) = "onNavigation($event)"
           routerLinkActive = "list-item-active" >
           <i class="fab fa-java list-item"></i>
           {{techBlogRoute.title}}</a>
@@ -33,7 +32,8 @@
 
           <a *ngFor =  "let techTool of techTools" 
             mat-list-item
-            (click) = "sidenav.close()"  routerLink = "/" routerLinkActive= "list-item-active" class="list-item">
+            (click) = "onNavigation($event)" routerLinkActive= "list-item-active" 
+            class="list-item">
             {{techTool}}
           </a>
 

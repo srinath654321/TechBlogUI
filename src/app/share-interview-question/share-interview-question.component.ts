@@ -1,22 +1,29 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-share-java-interview-question',
-  templateUrl: './share-java-interview-question.component.html',
-  styleUrls: ['./share-java-interview-question.component.css']
+  selector: 'app-share-interview-question',
+  templateUrl: './share-interview-question.component.html',
+  styleUrls: ['./share-interview-question.component.css']
 })
-export class ShareJavaInterviewQuestionComponent implements OnInit {
+export class ShareInterviewQuestionComponent implements OnInit {
 
   shareJavaQuestion: FormGroup;
   company: string;
   question: string;
   answer: string;
+  topic: string;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.route.queryParams.subscribe(params => {
+      this.topic = params['topic'];
+      console.log("query param", params)
+    })
+    
     this.shareJavaQuestion = this.fb.group({
 
       company : [this.company],

@@ -1,0 +1,29 @@
+.font {
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+}
+
+.card {
+    background-color: #f2f8f9;
+    border-radius: 6px;
+}
+
+h3 {
+    color: #262626;
+    font-size: 17px;
+    line-height: 24px;
+    font-weight: 700;
+}
+
+p {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #666666;
+}
+
+.card:hover {
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    border-left: 4px solid #673ab7;
+}

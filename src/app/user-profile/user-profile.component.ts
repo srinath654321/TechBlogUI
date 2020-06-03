@@ -1,3 +1,4 @@
+import { TruncatePipe } from './../truncate.pipe';
 import { AuthService } from 'angularx-social-login';
 import { ContactEditEvent } from './../contact/ContactEditEvent';
 import { Contact } from './../contact/Contact';
@@ -33,10 +34,10 @@ export class UserProfileComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private matDialog: MatDialog, 
   private router: Router, private userService: UserService, private util: Util,
-  private socialAuthService: AuthService) { }
+  private socialAuthService: AuthService, private truncatePipe: TruncatePipe) { }
 
   contact: Contact;
-  about: string;
+  about: string = "";
   workExpArray: Array<WorkExp>= [];
   skillExpArray: Array<SkillExp> = [];
   certificationArray : Array<Certification> = [];
@@ -51,6 +52,19 @@ export class UserProfileComponent implements OnInit {
   summaryMode: any;
   educationMode: any;
   userId: string;
+  truncatedSummary: string = "";
+  showButton: boolean = false;
+  showSummary: string;
+
+  readMore() {
+    this.showButton = true;
+    this.showSummary = this.about;
+  }
+
+  readLess() {
+    this.showButton = false;
+    this.showSummary = this.truncatedSummary;
+  }
 
   ngOnInit() {
     
@@ -76,6 +90,11 @@ export class UserProfileComponent implements OnInit {
       this.user = data;
       this.userId = data.userId;
       this.about = data.summary;
+      if (this.about.length > 200) {
+        this.truncatedSummary = this.truncatePipe.transform(this.about, ['300']);
+        this.showSummary = this.truncatedSummary;
+      }
+
       this.contact = data.contact;
 
       if (data.certificationList == undefined) {
@@ -116,7 +135,8 @@ export class UserProfileComponent implements OnInit {
       console.log("error ", err)
       if (err.error instanceof Error) {
         console.log("client side error");
-      }else {
+      } else {
+        //this.util.openSnackbar("BACKEND SERVER IS DOWN, PLEASE LOGIN AFTER SOME TIME")
         alert("bakend server is down, please log in again")
         this.handleServerError()
       }

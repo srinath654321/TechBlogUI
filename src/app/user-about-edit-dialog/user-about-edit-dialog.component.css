@@ -8,17 +8,6 @@
     margin-right: 0;
 }
 
-/* textarea {
-    box-shadow: none;
-    border-radius: 2px;
-    border: 2px solid #673ab7;
-    padding: 0 10px;
-    width: 100%;
-    box-sizing: border-box;
-} */
-
-.form-field__textarea {
-    max-height: initial;
-    padding: 6px 10px;
-    min-height: 150px;
+.formatted {
+    white-space: pre-wrap;
 }

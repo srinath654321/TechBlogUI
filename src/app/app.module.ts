@@ -9,11 +9,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatSelectModule, MatToolbarModule, MatSidenavModule, MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatAutocompleteModule, MatIconModule, MatSnackBarModule, MatProgressBarModule, MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from '@angular/material';
 import { LoginComponent } from './login/login.component';
-import { JavaComponent } from './java/java.component';
-import { SqlComponent } from './sql/sql.component';
 import { RegisterComponent } from './register/register.component';
 import { JavaInterviewQuestionsComponent } from './java-interview-questions/java-interview-questions.component';
-import { ShareJavaInterviewQuestionComponent } from './share-java-interview-question/share-java-interview-question.component';
+import { ShareInterviewQuestionComponent } from './share-interview-question/share-interview-question.component';
 import { LoginAlertComponent } from './login-alert/login-alert.component';
 import { WorkExpAddDialogComponent } from './work-exp-add-dialog/work-exp-add-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
@@ -35,6 +33,7 @@ import {
   GoogleLoginProvider,
   LoginOpt, 
 } from 'angularx-social-login';
+import { TopicComponent } from './topic/topic.component';
 
 const googleLoginOptions: LoginOpt = {
   scope: 'profile email'
@@ -62,11 +61,9 @@ export function provideConfig() {
     NavbarComponent,
     UserProfileComponent,
     LoginComponent,
-    JavaComponent,
-    SqlComponent,
     RegisterComponent,
     JavaInterviewQuestionsComponent,
-    ShareJavaInterviewQuestionComponent,
+    ShareInterviewQuestionComponent,
     LoginAlertComponent,
     WorkExpAddDialogComponent,
     AlertDialogComponent,
@@ -81,6 +78,7 @@ export function provideConfig() {
     SkillComponent,
     SkillDialogComponent,
     ContactComponent,
+    TopicComponent,
   ],
   
   entryComponents: [AlertDialogComponent, EducationDialogComponent, UserContactEditDialogComponent, 

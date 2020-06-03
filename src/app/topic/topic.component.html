@@ -1,14 +1,15 @@
 <div class="container">
-    <h1 class="page-header">JAVA</h1>
+    <h1 class="page-header">{{ topic | uppercase}}</h1>
     <div class="row">
         <div class="col-md-6" *ngFor = "let topic of topics" style="padding: 10px;">
-            <div class="card mat-elevation-z8" (click)="onCardClick(topic)">
+            <div class="card mat-elevation-z8 custom-card" (click)="onCardClick(topic)">
                 <div class="card-body">
                     <div class="card-title">
-                            <h2>{{topic.topicHeader}}</h2>
+                        <h3>{{topic.topicHeader}}</h3>
                     </div>
+                    <div class="card-subtitle mb-2 text-muted">{{ topic.topicName }}</div>
                     <div class="card-text">
-                        <p>{{topic.topicDesc}}</p>
+                        <p class="small">{{topic.topicDesc}}</p>
                     </div>
                 </div>
             </div>

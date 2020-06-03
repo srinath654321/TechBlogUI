@@ -19,6 +19,12 @@
     font-weight: bolder;
 }
 
+.form-field-textarea {
+    max-height: initial;
+    padding: 6px 10px;
+    min-height: 150px;
+}
+
 .mat-raised-button {
     color: white;
     font-weight: 400;

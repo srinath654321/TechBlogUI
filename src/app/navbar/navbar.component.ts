@@ -5,7 +5,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Router, Routes } from '@angular/router';
 import { MatSidenav } from '@angular/material';
 
-interface ROUTE{
+interface ROUTE {
   icon?: string;
   route?: string;
   title?: string
@@ -19,25 +19,30 @@ interface ROUTE{
 export class NavbarComponent implements OnInit {
 
 
-@ViewChild('logOutAlert' , {static: false} )public logOutAlert: TemplateRef<any>;
+@ViewChild('logOutAlert')public logOutAlert: TemplateRef<any>;
 private matDialgRef : MatDialogRef<any>;
+
+@ViewChild('sidenav') matSideNav: MatSidenav;
 
 techBlogRoutes : ROUTE[] = [
     {
-      route: 'java',
+      route: 'topic',
       title: 'JAVA'
     },
     {
-      route: 'sql',
+      route: 'topic',
       title: 'SQL'
     }
   ]
 
   userName: string;
 
- techTools :string[] = ["SPRING", "HIBERNATE", "JACKSON", "DROPWIZARD", "MYSQL"]  
+  techTools :string[] = ["SPRING", "HIBERNATE", "JACKSON", "DROPWIZARD", "MYSQL"]  
 
-  constructor(private router: Router, private matDialog: MatDialog, private socialAuthService: AuthService) { }
+  constructor(private router: Router, private matDialog: MatDialog, 
+    private socialAuthService: AuthService) { }
+
+  topic: string;
 
   ngOnInit() {
   }
@@ -47,6 +52,14 @@ techBlogRoutes : ROUTE[] = [
     
     // sessionStorage.clear();
     // this.router.navigate(['login']);
+  }
+
+  onNavigation(event: any) {
+    console.log("clicked value in navigation ", event.target.textContent)
+    this.topic = event.target.textContent;
+    this.topic = this.topic.trim();
+    this.router.navigate(['topic'], {queryParams: {topic: this.topic}})
+    this.matSideNav.close();
   }
 
  
