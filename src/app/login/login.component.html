@@ -1,67 +1,3 @@
-<!-- <div class="login">
-    <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title>Login</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <form #loginForm = "ngForm">
-                    <i class="material-icons">person</i>
-                    <mat-form-field class="full-width-input">
-                        <input matInput placeholder="Username" [(ngModel)]="userName" name="userName">
-                    </mat-form-field>
-                    <i class="material-icons">lock</i>                    
-                    <mat-form-field class="full-width-input">
-                        <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password">
-                    </mat-form-field>
-                </form>
-            </mat-card-content>
-            <button class="btn btn-success" (click)="onGoogleSignIn()" color="primary">
-                    <span *ngIf = !loading>Login</span>
-                    <span *ngIf = "loading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> LOGGING</span>
-            </button>
-            <button class="btn btn-success" (click) = onRegister() style="margin-left: 10px;">
-                Register
-            </button>
-
-            <div class="row" style="padding-top: 15px">
-                <div class="col-12">
-                    <p *ngIf="isInvalidUser" class="bg-danger">Authentication failed: Invalid username/password</p>
-                </div>
-            </div>
-    </mat-card>
-</div> -->
-
-<!-- <section id="demo" class="demo-section">
-    <div class="jumbotron bg-transparent text-center">
-      <div *ngIf="!user" class="card text-center">
-        <h6 class="card-header">
-          Welcome to {{ title }}!
-        </h6>
-        <div class="card-block">
-          <h4 class="card-title">Not signed in</h4>
-          <p class="card-text">Sign in with</p>
-        </div>
-        <div class="card-block">
-          <button class="btn btn-google" (click)="onGoogleSignIn()">Google</button>
-        </div>
-      </div>
-      <div *ngIf="user" class="card text-center">
-        <h6 class="card-header">
-          Social Login Demo
-        </h6>
-        <div class="card-block"></div>
-        <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
-        <div class="card-block">
-          <h4 class="card-title">{{ user.name }}</h4>
-          <p class="card-text">{{ user.email }}</p>
-        </div>
-        <div class="card-block">
-          <button class="btn btn-danger" (click)="signOut()">Sign out</button>
-        </div>
-      </div>
-    </div>
-  
-  </section> -->
 <div class="container-fluid">
     <div class="row mt-5">
         <div class="col-xl-4"></div>
@@ -72,8 +8,13 @@
                     <mat-divider></mat-divider>
                     <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" (click)="onGoogleSignIn()">
                         <i class="fab fa-google mr-2"></i>
-                        <span *ngIf = "!loading">Sign in with Google</span>
-                        <span *ngIf = "loading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> Signing!!</span>
+                        <span *ngIf = "!gloading">Sign in with Google</span>
+                        <span *ngIf = "gloading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> Signing!!</span>
+                    </button>
+                    <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" (click)="onFacebookSignIn()">
+                        <i class="fab fa-facebook mr-2"></i>
+                        <span *ngIf = "!floading">Sign in with Facebook</span>
+                        <span *ngIf = "floading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> Signing!!</span>
                     </button>
                 </div>
             </div>

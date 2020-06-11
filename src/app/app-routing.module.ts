@@ -37,8 +37,9 @@ const routes: Routes = [
     component: JavaInterviewQuestionsComponent
   },
   {
-    path : 'shareInterviewQuestion',
-    component: ShareInterviewQuestionComponent
+    path : 'shareInterviewQuestion/:topic',
+    component: ShareInterviewQuestionComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

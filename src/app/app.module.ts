@@ -31,13 +31,20 @@ import {
   SocialLoginModule, 
   AuthServiceConfig,
   GoogleLoginProvider,
-  LoginOpt, 
+  LoginOpt,
+  FacebookLoginProvider, 
 } from 'angularx-social-login';
 import { TopicComponent } from './topic/topic.component';
 
 const googleLoginOptions: LoginOpt = {
   scope: 'profile email'
 }; // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2clientconfig
+
+
+const facebookLogInOptions: LoginOpt = {
+  scope: 'email',
+  enable_profile_selector: true
+}
 
 /** 
  * config takes two params
@@ -48,6 +55,11 @@ const CONFIG = new AuthServiceConfig([
     id: GoogleLoginProvider.PROVIDER_ID,
     provider: new GoogleLoginProvider('478012754672-1mse86h3na9846b26t9cm8mbp94j7cno.apps.googleusercontent.com',
     googleLoginOptions)
+  },
+
+  {
+    id : FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('549987245674957', facebookLogInOptions)
   }
 ]);
 

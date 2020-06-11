@@ -2,7 +2,7 @@ import { AuthLocalService } from './../auth.local.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import { AuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvider } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,8 @@ import { AuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-lo
 })
 export class LoginComponent implements OnInit {
 
-  loading:boolean;
+  gloading:boolean;
+  floading: boolean;
   isInValidUser: boolean;
   reDirectUrl: string;
   sub: Subscription;
@@ -25,10 +26,6 @@ export class LoginComponent implements OnInit {
   loggedIn : boolean;  
 
   ngOnInit() {
-    this.route.snapshot.queryParamMap.get('returnurl')
-    console.log(this.route.queryParams)
-    console.log("redirect url ", this.reDirectUrl)
-
     this.socialAuthService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
@@ -37,12 +34,12 @@ export class LoginComponent implements OnInit {
 
 
   onGoogleSignIn() : void {
-    this.loading = true;
+    this.gloading = true;
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((user) => {
       console.log ("signed  in user ", user);
       if (this.loggedIn) {
         console.log("user logged in ", user)
-        this.loading = true;
+        this.gloading = true;
         this.user = user;
         sessionStorage.setItem("userId", this.user.id);
         sessionStorage.setItem("firstName", this.user.firstName);
@@ -52,13 +49,43 @@ export class LoginComponent implements OnInit {
         sessionStorage.userLoggedIn = true;
 
         let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        console.log("return url", returnUrl);
         this.router.navigate([returnUrl || 'profile'])
       } else {
-        this.loading = false;
+        this.gloading = false;
       }
     }).catch(err => {
       alert(err);
-      this.loading = false;
+      this.gloading = false;
+    })
+  }
+
+  onFacebookSignIn() {
+    this.floading = true;
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then((user) => {
+
+      if (this.loggedIn == true) {
+
+        console.log ("signed  in user ", user);
+
+        this.floading = true;
+        this.user = user;
+        sessionStorage.setItem("userId", this.user.id);
+        sessionStorage.setItem("firstName", this.user.firstName);
+        sessionStorage.setItem("imageUrl", this.user.photoUrl);
+        sessionStorage.setItem("email", this.user.email);
+        sessionStorage.setItem("fullName", this.user.name);
+        sessionStorage.userLoggedIn = true;
+
+        let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+        console.log("return url", returnUrl);
+        this.router.navigate([returnUrl || 'profile'])
+      } else {
+        this.floading = false;
+      }
+    }).catch(err => {
+      alert(err);
+      this.floading = false;
     })
   }
 

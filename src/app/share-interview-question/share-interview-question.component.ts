@@ -19,7 +19,7 @@ export class ShareInterviewQuestionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.route.queryParams.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.topic = params['topic'];
       console.log("query param", params)
     })
