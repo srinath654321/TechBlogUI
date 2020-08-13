@@ -1,21 +1,21 @@
 <div class="container-fluid">
     <div class="row mt-5">
         <div class="col-xl-4"></div>
-        <div class="col-xl-3">
+        <div class="col-xl-4">
             <div class="card card-signin">
                 <div class="card-body">
                     <div class="card-title text-center font-weight-bold">Sign In</div>
                     <mat-divider></mat-divider>
-                    <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" (click)="onGoogleSignIn()">
-                        <i class="fab fa-google mr-2"></i>
-                        <span *ngIf = "!gloading">Sign in with Google</span>
-                        <span *ngIf = "gloading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> Signing!!</span>
-                    </button>
-                    <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit" (click)="onFacebookSignIn()">
-                        <i class="fab fa-facebook mr-2"></i>
-                        <span *ngIf = "!floading">Sign in with Facebook</span>
-                        <span *ngIf = "floading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> Signing!!</span>
-                    </button>
+                        <button class="btn btn-google btn-lg btn-block text-uppercase" type="submit" (click)="onGoogleSignIn()">
+                            <i class="fab fa-google mr-2"></i>
+                            <span *ngIf = "!gloading">Sign in with Google</span>
+                            <span *ngIf = "gloading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> Signing!!</span>
+                        </button>
+                        <button class="btn btn-google btn-lg btn-block text-uppercase" type="submit" (click)="onFacebookSignIn()">
+                            <i class="fab fa-facebook mr-2"></i>
+                            <span *ngIf = "!floading">Sign in with Facebook</span>
+                            <span *ngIf = "floading"><i class="fa fa-spinner fa-lg fa-fw fa-spin"></i> Signing!!</span>
+                        </button>
                 </div>
             </div>
         </div>

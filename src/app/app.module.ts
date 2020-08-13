@@ -35,6 +35,7 @@ import {
   FacebookLoginProvider, 
 } from 'angularx-social-login';
 import { TopicComponent } from './topic/topic.component';
+import { OverlayComponent } from './overlay/overlay.component';
 
 const googleLoginOptions: LoginOpt = {
   scope: 'profile email'
@@ -91,6 +92,7 @@ export function provideConfig() {
     SkillDialogComponent,
     ContactComponent,
     TopicComponent,
+    OverlayComponent,
   ],
   
   entryComponents: [AlertDialogComponent, EducationDialogComponent, UserContactEditDialogComponent, 

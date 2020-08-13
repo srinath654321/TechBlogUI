@@ -51,6 +51,7 @@ export class UserProfileComponent implements OnInit {
   workExpMode: any;
   summaryMode: any;
   educationMode: any;
+  appLoadingMode: any;
   userId: string;
   truncatedSummary: string = "";
   showButton: boolean = false;
@@ -67,6 +68,8 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.appLoadingMode = 'indeterminate';
     
     this.router.events.subscribe( (event) => {
         if (event instanceof NavigationEnd) {
@@ -86,6 +89,8 @@ export class UserProfileComponent implements OnInit {
       if (data == null) {
         this.handleServerError()
       }
+
+      this.appLoadingMode = 'determinate'
       
       this.user = data;
       this.userId = data.userId;
@@ -132,6 +137,7 @@ export class UserProfileComponent implements OnInit {
     },
 
     (err: HttpErrorResponse) => {
+      this.appLoadingMode = 'indeterminate';
       console.log("error ", err)
       if (err.error instanceof Error) {
         console.log("client side error");
