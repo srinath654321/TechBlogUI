@@ -3,9 +3,10 @@ import { EducationDetailsService } from './../education-details.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
-import { Observable} from 'rxjs';
-import {map, startWith, debounceTime, tap} from 'rxjs/operators';
+import { Observable, Subject, BehaviorSubject} from 'rxjs';
+import {map, startWith, debounceTime, tap, distinctUntilChanged, filter, switchMap} from 'rxjs/operators';
 import { strict } from 'assert';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-education-dialog',
@@ -21,6 +22,10 @@ export class EducationDialogComponent implements OnInit {
   filteredDegreeOptions: Observable<string[]>;
 
   filteredUnivsOptions: Array<String>;
+
+  searchKey = new BehaviorSubject<string>("");
+
+  clearKey: string;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<EducationDialogComponent>, 
     private eduService: EducationDetailsService, @Inject (MAT_DIALOG_DATA) private data: any, private matDialog: MatDialog) { }
@@ -71,26 +76,45 @@ export class EducationDialogComponent implements OnInit {
 
 }
 
-schoolNameKeyUp(value: string) {
-  this.isLoading = true;
-  if (value.length > 4 && value != undefined) {
-    console.log("matcher value ", value);
-  this.eduService
-    .getMatchedUnivsData(value).subscribe((data:String[]) => {
-      this.filteredUnivsOptions = data;
-      this.isLoading = false;
-    }
-    )
-  } else {
+clearSearch() {
+  this.clearKey = "";
+  this.eduForm.patchValue({
+    schoolName :  this.clearKey
+  })
+}
+
+schoolNameKeyUp(key : string) {
+  this.clearKey = key;
+  this.searchKey.next(key);
+  this.filteredUnivsOptions = [];
+  this.searchKey.pipe(
+    debounceTime(400),
+    distinctUntilChanged(),
+    filter(filter => filter.length > 2),
+    tap(() => this.filteredUnivsOptions = []),
+    tap(() => this.isLoading = true),
+    switchMap(key => this.eduService.getMatchedUnivsData(key))
+  ).subscribe(result => {
     this.isLoading = false;
-  }
+    this.filteredUnivsOptions = result;
+  },
+
+  (err: HttpErrorResponse) => {
+    this.isLoading = false;
+    console.log("error ", err)
+    if (err.error instanceof Error) {
+      console.log("client side error");
+    } else {
+      alert("bakend server is down, please log in again")
+    }
+  })
 }
 
 
   get schoolName(){
     return this.eduForm.get('schoolName');
   }
-  
+
   get typeOfDegree(){
     return this.eduForm.get('typeOfDegree');
   }

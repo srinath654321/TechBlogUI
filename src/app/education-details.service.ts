@@ -2,7 +2,7 @@ import { InterviewQuestion } from './interview-question';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, Pipe } from '@angular/core';
-import { filter, map, catchError } from 'rxjs/operators';
+import { filter, map, catchError, switchMap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { error } from 'protractor';
 
@@ -31,13 +31,7 @@ export class EducationDetailsService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
-    }).pipe(
-      map((data: String[]) => {
-        return data;
-      }), catchError( error => {
-        return throwError("please see the error ",  error)
-      })
-    )
+    });
   }
 
 

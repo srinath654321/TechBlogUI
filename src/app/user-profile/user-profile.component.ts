@@ -56,6 +56,7 @@ export class UserProfileComponent implements OnInit {
   truncatedSummary: string = "";
   showButton: boolean = false;
   showSummary: string;
+  appLoading:boolean=true;
 
   readMore() {
     this.showButton = true;
@@ -87,11 +88,11 @@ export class UserProfileComponent implements OnInit {
       console.log("user data", data)
 
       if (data == null) {
-        this.handleServerError()
+        this.handleServerError();
       }
 
-      this.appLoadingMode = 'determinate'
-      
+      this.appLoading = false;
+
       this.user = data;
       this.userId = data.userId;
       this.about = data.summary;

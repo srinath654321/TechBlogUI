@@ -1,9 +1,19 @@
-<overlay [appLoadingMode] = "appLoadingMode"></overlay>
+<div *ngIf = "appLoading">
+    <overlay [appLoadingMode] = "appLoadingMode"></overlay>
+</div>
 <div class = "row mt-5">
-    <div class="col-xl-2">
+    <div class="col-xl-2 d-xl-block order-1">
+        <ul class="section-nav">
+            <li class="list-entry"><a [routerLink] = "['.']" fragment ="about">Summary</a></li>
+            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "contact">ContactInfo</a></li>
+            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "skill">Skills</a></li>
+            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "certifications">Certifications</a></li>
+            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "workexp">WorkExperience</a></li>
+            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "education">Education</a></li>
+        </ul>
     </div>
 
-    <div class="col-xl-8">
+    <div class="col-xl-8 order-2" >
         <section id="about">
             <mat-progress-bar mode={{summaryMode}}></mat-progress-bar>
             <div class="card stretch-card mb-4 mat-elevation-z8">
@@ -89,16 +99,7 @@
         </section>
         
     </div>
-    <div class="col-xl-2 d-xl-block">
-        <ul class="section-nav">
-            <li class="list-entry"><a [routerLink] = "['.']" fragment ="about">Summary</a></li>
-            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "contact">ContactInfo</a></li>
-            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "skill">Skills</a></li>
-            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "certifications">Certifications</a></li>
-            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "workexp">WorkExperience</a></li>
-            <li class="list-entry"><a [routerLink] =  "['.']" fragment = "education">Education</a></li>
-        </ul>
-    </div>
+
 </div>
 
 

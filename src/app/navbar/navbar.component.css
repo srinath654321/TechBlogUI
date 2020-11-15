@@ -10,17 +10,16 @@
   overflow-x: hidden;
 }
 
-.mat-sidenav{
-    background-color: darkgray;
+.mat-sidenav {
+    background-color: white;
 }
 
 .example-sidenav-container {
-    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-    flex: 1;
-  }
+   flex: 1;
+}
 
-h1.example-app-name {
+
+h1.example-app-name { 
     margin-left: 8px;
 }
 
@@ -32,16 +31,12 @@ h1.username {
 }
 
 .mat-list-item {
-    color: white;
+    color : black;
     font-weight: 300;
 }
 
-/* .mat-list-item:hover{
-    background-color: #673ab7;
-} */
-.mat-drawer-inner-container  {
-    width: 100%;
-    overflow: auto;
+.mat-list-item:hover {
+    font-weight: bolder;
 }
 
 .mat-subheader {
@@ -49,8 +44,12 @@ h1.username {
     font-weight: 900;
 }
 
-.list-item{
+.list-item {
     margin: 0 15px 0 15px;
+}
+
+.list-item :hover {
+    font-weight: bolder;
 }
 
 .cross-button {
@@ -58,18 +57,3 @@ h1.username {
     margin-left: auto;
     margin-right: 5px;
 }
-
-/* *::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  *::-webkit-scrollbar-thumb {
-    border-radius: 20px;
-    border: 3px solid orange;
-  } */
-
-
-
-
-
-  
